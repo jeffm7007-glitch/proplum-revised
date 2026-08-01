@@ -1,0 +1,493 @@
+<!DOCTYPE index.html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProPlum Network — AI-Powered Plumbing Marketing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0B0F19;
+            --navy-light: #111827;
+            --cyan: #06b6d4;
+            --cyan-glow: #22d3ee;
+            --emerald: #10b981;
+            --indigo: #6366f1;
+            --purple: #a855f7;
+            --gold: #f59e0b;
+            --text: #f3f4f6;
+            --text-dim: #9ca3af;
+            --text-muted: #6b7280;
+            --border: rgba(255,255,255,0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--navy);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        .header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+            background: rgba(11,15,25,0.9); backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header-inner {
+            max-width: 1280px; margin: 0 auto; padding: 1rem 1.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+        .logo-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: linear-gradient(135deg, var(--cyan), var(--indigo), var(--purple));
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-icon svg { width: 20px; height: 20px; color: white; }
+        .logo-text { display: flex; flex-direction: column; }
+        .logo-text span:first-child { font-weight: 800; font-size: 1.1rem; color: white; }
+        .logo-text span:last-child { font-size: 0.65rem; font-family: 'JetBrains Mono', monospace; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.1em; }
+        .nav { display: flex; gap: 2rem; }
+        .nav a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+        .nav a:hover { color: var(--cyan); }
+        .header-cta {
+            background: linear-gradient(135deg, var(--emerald), var(--cyan), var(--indigo));
+            color: white; padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.75rem;
+            font-weight: 700; font-family: 'JetBrains Mono', monospace; text-decoration: none;
+            letter-spacing: 0.05em; transition: transform 0.2s;
+        }
+        .header-cta:hover { transform: scale(1.03); }
+        
+        /* Hero */
+        .hero {
+            padding: 140px 1.5rem 80px; text-align: center;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(6,182,212,0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(99,102,241,0.1) 0%, transparent 50%),
+                var(--navy);
+        }
+        .hero-inner { max-width: 900px; margin: 0 auto; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.4rem 1rem; border-radius: 50px; background: rgba(6,182,212,0.1);
+            border: 1px solid rgba(6,182,212,0.2); color: var(--cyan-glow);
+            font-size: 0.75rem; font-weight: 600; margin-bottom: 1.5rem;
+        }
+        .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.05; margin-bottom: 1rem; }
+        .hero h1 span { background: linear-gradient(135deg, var(--cyan-glow), var(--indigo)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.15rem; color: var(--text-dim); max-width: 600px; margin: 0 auto 2rem; }
+        .hero-cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: linear-gradient(135deg, var(--emerald), var(--cyan), var(--indigo));
+            color: white; padding: 1rem 2rem; border-radius: 12px; font-weight: 700;
+            text-decoration: none; font-size: 1rem; transition: transform 0.2s; border: none; cursor: pointer;
+        }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(255,255,255,0.05); color: var(--text); padding: 1rem 2rem;
+            border-radius: 12px; font-weight: 600; text-decoration: none; font-size: 1rem;
+            border: 1px solid rgba(255,255,255,0.1); transition: all 0.2s;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+        .hero-tagline {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.6rem 1.2rem; border-radius: 12px; background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(6,182,212,0.2); font-size: 0.85rem; color: var(--cyan-glow);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .trust-bar { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+        .trust-bar p { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 1rem; }
+        .trust-logos { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; opacity: 0.6; }
+        .trust-logos span { font-weight: 700; font-size: 1.1rem; color: var(--text-dim); }
+        
+        /* Sections */
+        section { padding: 80px 1.5rem; }
+        .section-inner { max-width: 1200px; margin: 0 auto; }
+        .section-label {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.15em; color: var(--cyan); margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .section-label::before { content: ''; display: inline-block; width: 20px; height: 2px; background: var(--cyan); }
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1rem; line-height: 1.1; }
+        .section-title span { background: linear-gradient(135deg, var(--cyan-glow), var(--indigo)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-subtitle { color: var(--text-dim); font-size: 1.1rem; max-width: 600px; margin-bottom: 3rem; }
+        
+        /* Core Capabilities */
+        .capabilities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .cap-card {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+            border-radius: 16px; padding: 2rem; transition: all 0.3s;
+        }
+        .cap-card:hover { border-color: rgba(6,182,212,0.3); transform: translateY(-4px); }
+        .cap-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 1.5rem; }
+        .cap-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .cap-card p { color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
+        .cap-card ul { list-style: none; margin-top: 1rem; }
+        .cap-card li { padding: 0.4rem 0; padding-left: 1.2rem; position: relative; color: var(--text-dim); font-size: 0.85rem; }
+        .cap-card li::before { content: '✓'; position: absolute; left: 0; color: var(--emerald); font-weight: 700; }
+        
+        /* AI Receptionist Demo */
+        .demo-section { background: linear-gradient(180deg, var(--navy) 0%, rgba(6,182,212,0.05) 50%, var(--navy) 100%); }
+        .demo-card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(6,182,212,0.2);
+            border-radius: 20px; padding: 2rem; margin-top: 2rem;
+        }
+        .demo-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .demo-header h3 { font-size: 1.1rem; font-weight: 700; }
+        .demo-header span { font-size: 0.65rem; font-family: 'JetBrains Mono', monospace; padding: 0.25rem 0.5rem; border-radius: 4px; background: rgba(16,185,129,0.15); color: var(--emerald); border: 1px solid rgba(16,185,129,0.3); }
+        .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .demo-box { background: rgba(0,0,0,0.2); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border); }
+        .demo-box h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .demo-box p { font-size: 0.85rem; color: var(--text-dim); }
+        .chat-bubble { background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.2); border-radius: 8px; padding: 0.75rem; margin-top: 0.75rem; font-size: 0.8rem; color: var(--cyan-glow); }
+        
+        /* Cities */
+        .cities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-top: 2rem; }
+        .city-card {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+            border-radius: 12px; padding: 1.5rem; transition: all 0.2s;
+        }
+        .city-card:hover { border-color: rgba(6,182,212,0.3); }
+        .city-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .city-card span { font-size: 0.75rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+        
+        /* Pricing */
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .pricing-card {
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+            border-radius: 20px; padding: 2rem; text-align: center; position: relative;
+        }
+        .pricing-card.popular { border-color: rgba(6,182,212,0.3); background: rgba(6,182,212,0.03); }
+        .popular-badge {
+            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--emerald), var(--cyan)); color: white;
+            padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.7rem; font-weight: 700;
+        }
+        .pricing-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .pricing-card .price { font-size: 3rem; font-weight: 900; margin: 1rem 0; }
+        .pricing-card .price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+        .pricing-card ul { list-style: none; text-align: left; margin: 1.5rem 0; }
+        .pricing-card li { padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--text-dim); font-size: 0.9rem; }
+        .pricing-card li::before { content: '✓'; position: absolute; left: 0; color: var(--emerald); font-weight: 700; }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 1.5rem; text-align: center;
+            background: radial-gradient(ellipse at 50% 50%, rgba(99,102,241,0.15) 0%, transparent 70%), var(--navy);
+        }
+        .cta-section h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; margin-bottom: 1rem; }
+        .cta-section p { color: var(--text-dim); font-size: 1.1rem; max-width: 500px; margin: 0 auto 2rem; }
+        
+        /* Footer */
+        footer { padding: 60px 1.5rem 30px; border-top: 1px solid var(--border); }
+        .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+        .footer-brand p { color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem; }
+        .footer-col h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 1rem; }
+        .footer-col a { display: block; color: var(--text-muted); text-decoration: none; font-size: 0.85rem; padding: 0.3rem 0; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--cyan); }
+        .newsletter-form { display: flex; gap: 0.5rem; margin-top: 1rem; }
+        .newsletter-form input {
+            flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+            border-radius: 8px; padding: 0.6rem 1rem; color: white; font-size: 0.85rem;
+        }
+        .newsletter-form input::placeholder { color: var(--text-muted); }
+        .newsletter-form button {
+            background: var(--cyan); color: var(--navy); border: none; border-radius: 8px;
+            padding: 0.6rem 1rem; font-weight: 700; font-size: 0.85rem; cursor: pointer;
+        }
+        .footer-bottom {
+            max-width: 1200px; margin: 3rem auto 0; padding-top: 2rem;
+            border-top: 1px solid var(--border); display: flex; justify-content: space-between;
+            color: var(--text-muted); font-size: 0.8rem;
+        }
+        
+        /* Mobile */
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .hero { padding: 120px 1rem 60px; }
+            .hero-cta-group { flex-direction: column; }
+            .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+            .demo-grid { grid-template-columns: 1fr; }
+            .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
+                </div>
+                <div class="logo-text">
+                    <span>ProPlum Network</span>
+                    <span>AI Marketing for Plumbers</span>
+                </div>
+            </a>
+            <nav class="nav">
+                <a href="#features">Features</a>
+                <a href="#receptionist">AI Receptionist</a>
+                <a href="#cities">Cities</a>
+                <a href="#pricing">Pricing</a>
+            </nav>
+            <a href="sms:8134913950?body=PUT%20ME%20IN%20COACH" class="header-cta">TEXT "PUT ME IN COACH"</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-badge">🚀 Next-Gen Plumbing & HVAC Platform</div>
+            <h1>Dominate Your Market with a <span>Next-Gen AI Website</span></h1>
+            <p>Includes a virtual assistant you talk to like your right-hand man — no learning curve. You speak plain English. Web and mobile app natively integrated.</p>
+            <div class="hero-cta-group">
+                <a href="sms:8134913950?body=PUT%20ME%20IN%20COACH" class="btn-primary">📱 TEXT "PUT ME IN COACH" to 813.491.3950</a>
+                <a href="#demo" class="btn-secondary">▶ Demo the Virtual Assistant</a>
+            </div>
+            <div class="hero-tagline">
+                <span>Text <strong>"PUT ME IN COACH"</strong> for a no-nonsense 10-min game plan • <strong>813.491.3950</strong></span>
+            </div>
+            <div class="trust-bar">
+                <p>Trusted by High-Growth Plumbing Contractors</p>
+                <div class="trust-logos">
+                    <span>PROPLUM</span>
+                    <span>SERVICETITAN</span>
+                    <span>HUBSPOT</span>
+                    <span>HOUSECALL PRO</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Capabilities -->
+    <section id="features">
+        <div class="section-inner">
+            <div class="section-label">Core Capabilities</div>
+            <h2 class="section-title">Everything You Need to <span>Win More Jobs</span></h2>
+            <p class="section-subtitle">Stop wrestling with tech. ProPlum handles the heavy lifting — from your website to your phone.</p>
+            
+            <div class="capabilities-grid">
+                <div class="cap-card">
+                    <div class="cap-icon" style="background: rgba(6,182,212,0.1); color: var(--cyan);">📱</div>
+                    <h3>Mobile App</h3>
+                    <p>Your business in your pocket. Check appointments, request Google reviews, and take payments — all from one app.</p>
+                    <ul>
+                        <li>Check your appointments on the go</li>
+                        <li>Ask customers for Google reviews with one tap</li>
+                        <li>Take payments using Stripe — no extra setup</li>
+                    </ul>
+                </div>
+                <div class="cap-card">
+                    <div class="cap-icon" style="background: rgba(99,102,241,0.1); color: var(--indigo);">🔗</div>
+                    <h3>Integrations</h3>
+                    <p>ProPlum Network is completely agnostic. We integrate with virtually every home service CRM — done for you.</p>
+                    <ul>
+                        <li>ServiceTitan, Housecall Pro, Jobber</li>
+                        <li>HubSpot, Salesforce, Zoho</li>
+                        <li>Custom CRM? We handle the wiring</li>
+                    </ul>
+                </div>
+                <div class="cap-card">
+                    <div class="cap-icon" style="background: rgba(16,185,129,0.1); color: var(--emerald);">⚡</div>
+                    <h3>No Learning Curve</h3>
+                    <p>Plug and play. Voice instructions natively. If you can talk, you can use it.</p>
+                    <ul>
+                        <li>Set up in under 15 minutes</li>
+                        <li>Voice commands — no clicking through menus</li>
+                        <li>Works exactly like your right-hand man</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Receptionist -->
+    <section id="receptionist" class="demo-section">
+        <div class="section-inner">
+            <div class="section-label">15-Second Autonomous Agent Demo</div>
+            <h2 class="section-title">Gemini Powered <span>Virtual Receptionist</span></h2>
+            <p class="section-subtitle">Never lose a lead to a missed call again. Our AI answers, engages, and books appointments — 24/7.</p>
+            
+            <div class="demo-card">
+                <div class="demo-header">
+                    <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(6,182,212,0.1); display: flex; align-items: center; justify-content: center; color: var(--cyan);">🤖</div>
+                    <div>
+                        <h3>Missed Call Retrieval & CMS Sync Flow</h3>
+                        <span>LIVE AUTO-RUNNER</span>
+                    </div>
+                </div>
+                <div class="demo-grid">
+                    <div class="demo-box">
+                        <h4>📞 Missed Call Detected</h4>
+                        <p>Customer call missed after hours. Gemini Powered triggers instantly (&lt;80ms).</p>
+                        <div class="chat-bubble">
+                            <strong>Gemini Powered AI:</strong> "Hi Sarah, sorry we missed your call! How can we help you today?"
+                        </div>
+                    </div>
+                    <div class="demo-box">
+                        <h4>✅ Appointment Booked</h4>
+                        <p>AI captures intent, negotiates time, and syncs directly to your CMS.</p>
+                        <div class="chat-bubble" style="background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.2); color: var(--emerald);">
+                            <strong>Confirmed:</strong> Emergency Water Heater Service — Tomorrow 2:00 PM
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="capabilities-grid" style="margin-top: 2rem;">
+                <div class="cap-card">
+                    <div class="cap-icon" style="background: rgba(245,158,11,0.1); color: var(--gold);">⚡</div>
+                    <h4>Instant Missed Call Intercept</h4>
+                    <p style="font-size: 0.85rem;">Triggers within milliseconds when an inbound call goes unanswered. Keeps high-intent leads engaged before they call your competitor.</p>
+                </div>
+                <div class="cap-card">
+                    <div class="cap-icon" style="background: rgba(6,182,212,0.1); color: var(--cyan);">🗣</div>
+                    <h4>Gemini Powered Natural AI Voice</h4>
+                    <p style="font-size: 0.85rem;">Human-like conversational AI parses complex requests, emergency levels, and custom schedule preferences effortlessly.</p>
+                </div>
+                <div class="cap-card">
+                    <div class="cap-icon" style="background: rgba(16,185,129,0.1); color: var(--emerald);">🔗</div>
+                    <h4>Direct CMS & Calendar Integration</h4>
+                    <p style="font-size: 0.85rem;">Native webhooks and API integrations push confirmed appointments into ServiceTitan, HubSpot, Salesforce, or your custom CMS.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Target Cities -->
+    <section id="cities">
+        <div class="section-inner">
+            <div class="section-label">200 Target Cities • Nationwide Coverage</div>
+            <h2 class="section-title">Target Cities We Serve & <span>Local Map Pack Intelligence</span></h2>
+            <p class="section-subtitle">We monitor local market dynamics, competitor densities, Google Map Pack rankings, and threat indicators across 200 key metropolitan cities.</p>
+            
+            <div class="cities-grid">
+                <div class="city-card"><h3>Hartford, CT</h3><span>Region: Northeast • Rank #1</span></div>
+                <div class="city-card"><h3>Ogden, UT</h3><span>Region: West • Rank #2</span></div>
+                <div class="city-card"><h3>Dayton, OH</h3><span>Region: Midwest • Rank #3</span></div>
+                <div class="city-card"><h3>Columbia, SC</h3><span>Region: South • Rank #4</span></div>
+                <div class="city-card"><h3>New Haven, CT</h3><span>Region: Northeast • Rank #5</span></div>
+                <div class="city-card"><h3>Providence, RI</h3><span>Region: Northeast • Rank #6</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing">
+        <div class="section-inner">
+            <div class="section-label">7-Day Free Trial • No Risk</div>
+            <h2 class="section-title">Pick the Plan That Fits <span>Your Business</span></h2>
+            <p class="section-subtitle">Start with a 7-day free trial. Upgrade when you're ready to dominate your local market.</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter Test Drive</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">Try the full platform risk-free</p>
+                    <div class="price">$0<span>/ 7 days free</span></div>
+                    <ul>
+                        <li>Full 7-Day Unrestricted Access</li>
+                        <li>Gemini Powered Virtual Assistant</li>
+                        <li>Missed Call Retrieval & CMS Sync</li>
+                        <li>Web & Mobile App Included</li>
+                    </ul>
+                    <a href="sms:8134913950?body=PUT%20ME%20IN%20COACH" class="btn-secondary" style="width: 100%; justify-content: center;">Start Free Trial</a>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <h3>Make It to the Playoffs</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">For established contractors ready to grow</p>
+                    <div class="price">$259<span>/ month</span></div>
+                    <ul>
+                        <li>AI-Enabled Website (Web & Mobile)</li>
+                        <li>Virtual Assistant — Speak Plain English</li>
+                        <li>24/7 Missed Call Retrieval & Recovery</li>
+                        <li>ChatGPT & Gemini Local Search Capture</li>
+                        <li>ServiceTitan, HubSpot & CMS Auto-Sync</li>
+                    </ul>
+                    <a href="sms:8134913950?body=PUT%20ME%20IN%20COACH" class="btn-primary" style="width: 100%; justify-content: center;">Get Started ($259/mo)</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Dominator</h3>
+                    <p style="color: var(--text-muted); font-size: 0.85rem;">All-in market domination</p>
+                    <div class="price">$999<span>/ month</span></div>
+                    <ul>
+                        <li>Everything in Playoffs Plan</li>
+                        <li>Dynamic Pricing Engine</li>
+                        <li>Fastest Headless CMS Available</li>
+                        <li>Your Own Onsite AI SEO Expert</li>
+                        <li>Full 200 Target Cities Grid</li>
+                        <li>Unlimited AI Voice & SMS Volume</li>
+                    </ul>
+                    <a href="sms:8134913950?body=PUT%20ME%20IN%20COACH" class="btn-secondary" style="width: 100%; justify-content: center;">Go All In ($999/mo)</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2>Ready to Stop Missing Calls?</h2>
+        <p>Deploy your AI Receptionist in under 15 minutes. No learning curve. No code. Turnkey.</p>
+        <a href="sms:8134913950?body=PUT%20ME%20IN%20COACH" class="btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;">🎬 Text "PUT ME IN COACH" to 813.491.3950</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
+                    </div>
+                    <div class="logo-text">
+                        <span>ProPlum Network</span>
+                        <span>AI Marketing for Plumbers</span>
+                    </div>
+                </a>
+                <p>The low-latency event processing, automated stream orchestration, and real-time observability platform built for modern plumbing contractors.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="#features">AI Website</a>
+                <a href="#receptionist">Virtual Receptionist</a>
+                <a href="#cities">Local SEO</a>
+                <a href="#pricing">Pricing</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="#">Documentation</a>
+                <a href="#">API Reference</a>
+                <a href="#">Blog</a>
+                <a href="#">System Status</a>
+            </div>
+            <div class="footer-col">
+                <h4>Hold My Beer I Got This for You</h4>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Get the playbook, tips, and tricks we don't share anywhere else.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
+                    <input type="email" placeholder="you@company.com" required>
+                    <button type="submit">Join</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 ProPlum Network Inc. All rights reserved.</p>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="#" style="color: var(--text-muted); text-decoration: none;">Privacy</a>
+                <a href="#" style="color: var(--text-muted); text-decoration: none;">Terms</a>
+                <a href="#" style="color: var(--text-muted); text-decoration: none;">Security</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

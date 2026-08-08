@@ -1,29 +1,13 @@
-[[redirects]]
-  from = "/audit/*"
-  to = "/audit.html"
-  status = 200
+# Minimal redirects — let Netlify serve static files by default
+# Only add explicit redirects where needed
 
+# Audit tool paths
 [[redirects]]
   from = "/audit"
-  to = "/audit.html"
+  to = "/audit/index.html"
   status = 200
 
 [[redirects]]
-  from = "/audit.html"
-  to = "/audit.html"
-  status = 200
-
-[[redirects]]
-  from = "/pricing.html"
-  to = "/pricing.html"
-  status = 200
-
-[[redirects]]
-  from = "/demo.html"
-  to = "/demo.html"
-  status = 200
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/audit/"
+  to = "/audit/index.html"
   status = 200

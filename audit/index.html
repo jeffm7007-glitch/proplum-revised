@@ -261,6 +261,69 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
 
+        /* FUN FACTS */
+        .fun-facts {
+            padding: 4rem 5%;
+            background: linear-gradient(180deg, var(--darker), var(--dark));
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .fun-facts h2 {
+            text-align: center;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 800;
+            margin-bottom: 3rem;
+        }
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .fact-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8));
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+        .fact-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(14, 165, 233, 0.2);
+        }
+        .fact-card.highlight {
+            border-color: rgba(34, 197, 94, 0.3);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.08), rgba(15, 23, 42, 0.8));
+        }
+        .fact-card.highlight:hover {
+            border-color: rgba(34, 197, 94, 0.5);
+        }
+        .fact-num {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), #38bdf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.75rem;
+        }
+        .fact-card.highlight .fact-num {
+            background: linear-gradient(135deg, var(--success), #4ade80);
+            -webkit-background-clip: text;
+        }
+        .fact-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+        .fact-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        .fact-card strong {
+            color: var(--text);
+        }
+
         footer {
             padding: 3rem 5%;
             text-align: center;
@@ -292,6 +355,38 @@
         <div class="stat">
             <div class="num">4.4x</div>
             <div class="label">Higher LLM Conversions</div>
+        </div>
+    </div>
+</div>
+
+<!-- FUN FACTS -->
+<div class="fun-facts">
+    <h2>Why AI Search Visibility Matters in 2026</h2>
+    <div class="facts-grid">
+        <div class="fact-card">
+            <div class="fact-num">58.5%</div>
+            <h4>Zero-Click Searches</h4>
+            <p>Of desktop searches and <strong>77.1%</strong> of mobile searches are now zero-click — users get answers directly from search pages without ever visiting websites.</p>
+        </div>
+        <div class="fact-card">
+            <div class="fact-num">-65.3%</div>
+            <h4>AI Overview Impact</h4>
+            <p>When AI Overviews appear, the #1 organic CTR drops from <strong>1.76% to 0.61%</strong>. Even top rankings are losing clicks to AI answers.</p>
+        </div>
+        <div class="fact-card highlight">
+            <div class="fact-num">4.4x</div>
+            <h4>LLM Conversion Rate</h4>
+            <p>Visitors from Large Language Models convert at <strong>4.4x the rate</strong> of traditional organic traffic. AI search users are buyers, not browsers.</p>
+        </div>
+        <div class="fact-card">
+            <div class="fact-num">92%</div>
+            <h4>Enterprises Failing</h4>
+            <p><strong>92%</strong> of enterprise brands are failing at AI visibility. <strong>62%</strong> are technically invisible to generative AI models. Even big brands are behind.</p>
+        </div>
+        <div class="fact-card">
+            <div class="fact-num">31.3%</div>
+            <h4>US Population by 2026</h4>
+            <p>EMARKETER forecasts <strong>31.3% of the US population</strong> will use generative AI search in 2026. That's 100+ million people asking AI for recommendations.</p>
         </div>
     </div>
 </div>

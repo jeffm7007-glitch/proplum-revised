@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProPlum Network — AI-Powered Plumbing Marketing</title>
+    <title>Lever AI — AI Search Visibility Platform for Multi-Location Brands</title>
+    <meta name="description" content="AI search visibility infrastructure for franchise networks, multi-location brands, and service enterprises. Stop losing revenue to AI search invisibility.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -32,7 +33,6 @@
             overflow-x: hidden;
         }
         
-        /* Header */
         .header {
             position: fixed; top: 0; left: 0; right: 0; z-index: 50;
             background: rgba(11,15,25,0.9); backdrop-filter: blur(12px);
@@ -48,13 +48,13 @@
             background: linear-gradient(135deg, var(--cyan), var(--indigo), var(--purple));
             display: flex; align-items: center; justify-content: center;
         }
-        .logo-icon svg { width: 20px; height: 20px; color: white; }
         .logo-text { display: flex; flex-direction: column; }
         .logo-text span:first-child { font-weight: 800; font-size: 1.1rem; color: white; }
         .logo-text span:last-child { font-size: 0.65rem; font-family: 'JetBrains Mono', monospace; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.1em; }
-        .nav { display: flex; gap: 2rem; }
+        .nav { display: flex; gap: 2rem; align-items: center; }
         .nav a { color: var(--text-dim); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
         .nav a:hover { color: var(--cyan); }
+        .nav a.nav-cta-link { background: linear-gradient(135deg, var(--emerald), var(--cyan)); color: white; padding: 0.4rem 1rem; border-radius: 6px; font-size: 0.8rem; font-weight: 700; }
         .header-cta {
             background: linear-gradient(135deg, var(--emerald), var(--cyan), var(--indigo));
             color: white; padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.75rem;
@@ -63,7 +63,6 @@
         }
         .header-cta:hover { transform: scale(1.03); }
         
-        /* Hero */
         .hero {
             padding: 140px 1.5rem 80px; text-align: center;
             background: 
@@ -96,18 +95,7 @@
             border: 1px solid rgba(255,255,255,0.1); transition: all 0.2s;
         }
         .btn-secondary:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
-        .hero-tagline {
-            display: inline-flex; align-items: center; gap: 0.5rem;
-            padding: 0.6rem 1.2rem; border-radius: 12px; background: rgba(0,0,0,0.3);
-            border: 1px solid rgba(6,182,212,0.2); font-size: 0.85rem; color: var(--cyan-glow);
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .trust-bar { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
-        .trust-bar p { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted); margin-bottom: 1rem; }
-        .trust-logos { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; opacity: 0.6; }
-        .trust-logos span { font-weight: 700; font-size: 1.1rem; color: var(--text-dim); }
         
-        /* Sections */
         section { padding: 80px 1.5rem; }
         .section-inner { max-width: 1200px; margin: 0 auto; }
         .section-label {
@@ -121,7 +109,6 @@
         .section-title span { background: linear-gradient(135deg, var(--cyan-glow), var(--indigo)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .section-subtitle { color: var(--text-dim); font-size: 1.1rem; max-width: 600px; margin-bottom: 3rem; }
         
-        /* Core Capabilities */
         .capabilities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
         .cap-card {
             background: rgba(255,255,255,0.03); border: 1px solid var(--border);
@@ -135,51 +122,11 @@
         .cap-card li { padding: 0.4rem 0; padding-left: 1.2rem; position: relative; color: var(--text-dim); font-size: 0.85rem; }
         .cap-card li::before { content: '✓'; position: absolute; left: 0; color: var(--emerald); font-weight: 700; }
         
-        /* AI Receptionist Demo */
-        .demo-section { background: linear-gradient(180deg, var(--navy) 0%, rgba(6,182,212,0.05) 50%, var(--navy) 100%); }
-        .demo-card {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(6,182,212,0.2);
-            border-radius: 20px; padding: 2rem; margin-top: 2rem;
-        }
-        .demo-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
-        .demo-header h3 { font-size: 1.1rem; font-weight: 700; }
-        .demo-header span { font-size: 0.65rem; font-family: 'JetBrains Mono', monospace; padding: 0.25rem 0.5rem; border-radius: 4px; background: rgba(16,185,129,0.15); color: var(--emerald); border: 1px solid rgba(16,185,129,0.3); }
-        .demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-        .demo-box { background: rgba(0,0,0,0.2); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border); }
-        .demo-box h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
-        .demo-box p { font-size: 0.85rem; color: var(--text-dim); }
-        .chat-bubble { background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.2); border-radius: 8px; padding: 0.75rem; margin-top: 0.75rem; font-size: 0.8rem; color: var(--cyan-glow); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
+        .stat-card { text-align: center; padding: 2rem; background: rgba(255,255,255,0.03); border-radius: 16px; border: 1px solid var(--border); }
+        .stat-number { font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, var(--cyan-glow), var(--indigo)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-label { color: var(--text-dim); font-size: 0.85rem; margin-top: 0.5rem; }
         
-        /* Cities */
-        .cities-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; margin-top: 2rem; }
-        .city-card {
-            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-            border-radius: 12px; padding: 1.5rem; transition: all 0.2s;
-        }
-        .city-card:hover { border-color: rgba(6,182,212,0.3); }
-        .city-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
-        .city-card span { font-size: 0.75rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
-        
-        /* Pricing */
-        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-        .pricing-card {
-            background: rgba(255,255,255,0.03); border: 1px solid var(--border);
-            border-radius: 20px; padding: 2rem; text-align: center; position: relative;
-        }
-        .pricing-card.popular { border-color: rgba(6,182,212,0.3); background: rgba(6,182,212,0.03); }
-        .popular-badge {
-            position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--emerald), var(--cyan)); color: white;
-            padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.7rem; font-weight: 700;
-        }
-        .pricing-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
-        .pricing-card .price { font-size: 3rem; font-weight: 900; margin: 1rem 0; }
-        .pricing-card .price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
-        .pricing-card ul { list-style: none; text-align: left; margin: 1.5rem 0; }
-        .pricing-card li { padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--text-dim); font-size: 0.9rem; }
-        .pricing-card li::before { content: '✓'; position: absolute; left: 0; color: var(--emerald); font-weight: 700; }
-        
-        /* CTA Section */
         .cta-section {
             padding: 100px 1.5rem; text-align: center;
             background: radial-gradient(ellipse at 50% 50%, rgba(99,102,241,0.15) 0%, transparent 70%), var(--navy);
@@ -187,421 +134,238 @@
         .cta-section h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; margin-bottom: 1rem; }
         .cta-section p { color: var(--text-dim); font-size: 1.1rem; max-width: 500px; margin: 0 auto 2rem; }
         
-        /* Footer */
         footer { padding: 60px 1.5rem 30px; border-top: 1px solid var(--border); }
         .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
         .footer-brand p { color: var(--text-muted); font-size: 0.9rem; margin-top: 1rem; }
         .footer-col h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 1rem; }
         .footer-col a { display: block; color: var(--text-muted); text-decoration: none; font-size: 0.85rem; padding: 0.3rem 0; transition: color 0.2s; }
         .footer-col a:hover { color: var(--cyan); }
-        .newsletter-form { display: flex; gap: 0.5rem; margin-top: 1rem; }
-        .newsletter-form input {
-            flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-            border-radius: 8px; padding: 0.6rem 1rem; color: white; font-size: 0.85rem;
-        }
-        .newsletter-form input::placeholder { color: var(--text-muted); }
-        .newsletter-form button {
-            background: var(--cyan); color: var(--navy); border: none; border-radius: 8px;
-            padding: 0.6rem 1rem; font-weight: 700; font-size: 0.85rem; cursor: pointer;
-        }
         .footer-bottom {
             max-width: 1200px; margin: 3rem auto 0; padding-top: 2rem;
             border-top: 1px solid var(--border); display: flex; justify-content: space-between;
             color: var(--text-muted); font-size: 0.8rem;
         }
         
-        /* Mobile */
         @media (max-width: 768px) {
             .nav { display: none; }
             .hero { padding: 120px 1rem 60px; }
             .hero-cta-group { flex-direction: column; }
             .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
-            .demo-grid { grid-template-columns: 1fr; }
             .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
             .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header-inner">
             <a href="#" class="logo">
                 <div class="logo-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" color="white"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
                 </div>
                 <div class="logo-text">
-                    <span>ProPlum Network</span>
-                    <span>AI Marketing for Plumbers</span>
+                    <span>Lever AI</span>
+                    <span>AI Search Visibility Platform</span>
                 </div>
             </a>
             <nav class="nav">
-                <a href="#features">Features</a>
-                <a href="#receptionist">AI Receptionist</a>
-                <a href="/pricing.html">Pricing</a>
-                <a href="/demo.html">Demo</a>
-                <a href="#cities">Cities</a>
+                <a href="https://proplumnetwork.com">Franchise Case Studies</a>
+                <a href="https://proplumnetwork.com">Free Audit Your Website</a>
+                <a href="https://proplumnetwork.com">Contact Us</a>
             </nav>
-            <a href="sms:8134913950?body=PUT%20ME%20IN%20COACH" class="header-cta">TEXT "PUT ME IN COACH"</a>
+            <a href="https://proplum-ai-audit.netlify.app" class="header-cta">FREE AI AUDIT</a>
         </div>
     </header>
 
-    <!-- Hero -->
     <section class="hero">
         <div class="hero-inner">
-            <div class="hero-badge">🚀 Next-Gen Plumbing & HVAC Platform</div>
-            <h1>Stop Losing 58 Percent of Your Plumbing Business to AI Answers</h1>
-            <p>Includes a virtual assistant you talk to like your right-hand man — no complex setup. You speak plain English. Web and mobile app natively integrated.</p>
+            <div class="hero-badge">🔍 AI Search Visibility Infrastructure</div>
+            <h1>Your Locations Are <span>Invisible to AI Search</span></h1>
+            <p>31.3% of consumers now use AI search. If your brand isn't structured for ChatGPT, Claude, and Perplexity, you're not in the consideration set.</p>
             <div class="hero-cta-group">
-                <a href="sms:8134913950?body=PUT%20ME%20IN%20COACH" class="btn-primary">📱 TEXT "PUT ME IN COACH" to 813.491.3950</a>
-                <a href="https://youtu.be/op9D6yJBeBY" target="_blank" class="btn-secondary">▶ Watch the AI Demo</a>
+                <a href="https://proplum-ai-audit.netlify.app" class="btn-primary">🔍 Run Free AI Visibility Audit</a>
+                <a href="#solution" class="btn-secondary">See How It Works</a>
             </div>
-            <!-- YouTube Video Hero -->
-            <div style="margin: 2rem 0; max-width: 720px; width: 100%;">
-                <a href="https://youtu.be/op9D6yJBeBY" target="_blank" style="display: block; position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
-                    <img src="https://img.youtube.com/vi/op9D6yJBeBY/maxresdefault.jpg" alt="AI Virtual Assistant Demo" style="width: 100%; display: block;">
-                    <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center;">
-                        <div style="width: 80px; height: 80px; background: rgba(255,255,255,0.95); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--navy)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                        </div>
-                    </div>
-                </a>
-                <p style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">▶ Watch: How the AI Virtual Assistant handles emergency calls</p>
+        </div>
+    </section>
+
+    <section id="solution">
+        <div class="section-inner">
+            <div class="section-label">The Problem</div>
+            <h2 class="section-title">Traditional SEO Is <span>Dying</span></h2>
+            <p class="section-subtitle">AI platforms don't browse websites. They synthesize answers from structured data. Most multi-location brands have zero AI visibility infrastructure.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">31.3%</div>
+                    <div class="stat-label">US consumers using AI search in 2026</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.4x</div>
+                    <div class="stat-label">Higher conversion rate for AI-discovered businesses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">58%</div>
+                    <div class="stat-label">Of desktop searches are zero-click</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$4.7M</div>
+                    <div class="stat-label">Average annual revenue leak for 70-location networks</div>
+                </div>
             </div>
-            <div class="hero-tagline">
-                <span>Text <strong>"PUT ME IN COACH"</strong> for a no-nonsense 10-min game plan • <strong>813.491.3950</strong></span>
-            </div>
-            <div class="trust-bar">
-                <p>Trusted by High-Growth Plumbing Contractors</p>
-                <div class="trust-logos">
-                    <span>PROPLUM</span>
-                    <span>SERVICETITAN</span>
-                    <span>HUBSPOT</span>
-                    <span>HOUSECALL PRO</span>
+            
+            <div class="capabilities-grid" style="margin-top: 3rem;">
+                <div class="cap-card">
+                    <div class="cap-icon" style="background: rgba(6,182,212,0.1); color: var(--cyan);">🔍</div>
+                    <h3>AI Search Audit</h3>
+                    <p>Comprehensive visibility scoring across all locations. Identify ghost pages, missing schema, and technical debt.</p>
+                    <ul>
+                        <li>8-point AI visibility scorecard</li>
+                        <li>Ghost page detection</li>
+                        <li>Schema markup analysis</li>
+                        <li>Competitive benchmarking</li>
+                    </ul>
+                </div>
+                <div class="cap-card">
+                    <div class="cap-icon" style="background: rgba(99,102,241,0.1); color: var(--indigo);">⚡</div>
+                    <h3>Infrastructure Deployment</h3>
+                    <p>Deploy LocalBusiness schema, llms.txt, and structured data across your entire network — not just the homepage.</p>
+                    <ul>
+                        <li>Network-wide schema deployment</li>
+                        <li>llms.txt optimization</li>
+                        <li>Technical debt remediation</li>
+                        <li>Franchisee compliance dashboard</li>
+                    </ul>
+                </div>
+                <div class="cap-card">
+                    <div class="cap-icon" style="background: rgba(16,185,129,0.1); color: var(--emerald);">📊</div>
+                    <h3>Ongoing Intelligence</h3>
+                    <p>Monitor competitor AI visibility, track answer capture rates, and receive alerts when your visibility changes.</p>
+                    <ul>
+                        <li>Competitor visibility tracking</li>
+                        <li>AI answer capture monitoring</li>
+                        <li>Monthly board reports</li>
+                        <li>Threat detection alerts</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Core Capabilities -->
-    <section id="features">
+    <section id="how-it-works" style="background: linear-gradient(180deg, var(--navy) 0%, rgba(6,182,212,0.03) 50%, var(--navy) 100%);">
         <div class="section-inner">
-            <div class="section-label">Core Capabilities</div>
-            <h2 class="section-title">Everything You Need to <span>Win More Jobs</span></h2>
-            <p class="section-subtitle">Stop wrestling with tech. ProPlum handles the heavy lifting — from your website to your phone.</p>
+            <div class="section-label">Process</div>
+            <h2 class="section-title">How It <span>Works</span></h2>
+            <p class="section-subtitle">From audit to visibility in 48 hours. No disruption to existing operations.</p>
             
             <div class="capabilities-grid">
                 <div class="cap-card">
-                    <div class="cap-icon" style="background: rgba(6,182,212,0.1); color: var(--cyan);">📱</div>
-                    <h3>Mobile App</h3>
-                    <p>Your business in your pocket. Check appointments, request Google reviews, and take payments — all from one app.</p>
-                    <ul>
-                        <li>Check your appointments on the go</li>
-                        <li>Ask customers for Google reviews with one tap</li>
-                        <li>Take payments using Stripe — no extra setup</li>
-                    </ul>
+                    <div class="cap-icon" style="background: rgba(245,158,11,0.1); color: var(--gold);">1</div>
+                    <h3>Free AI Visibility Audit</h3>
+                    <p>We scan your entire network — corporate site, location pages, schema markup, and competitive positioning. You get a 10-K style disclosure report with raw data, no conclusions.</p>
                 </div>
                 <div class="cap-card">
-                    <div class="cap-icon" style="background: rgba(99,102,241,0.1); color: var(--indigo);">🔗</div>
-                    <h3>Integrations</h3>
-                    <p>ProPlum Network is completely agnostic. We integrate with virtually every home service CRM — done for you.</p>
-                    <ul>
-                        <li>ServiceTitan, Housecall Pro, Jobber</li>
-                        <li>HubSpot, Salesforce, Zoho</li>
-                        <li>Custom CRM? We handle the wiring</li>
-                    </ul>
+                    <div class="cap-icon" style="background: rgba(6,182,212,0.1); color: var(--cyan);">2</div>
+                    <h3>Remediation Planning</h3>
+                    <p>We prioritize fixes by revenue impact. Ghost pages first. Schema second. Content optimization third. Every recommendation includes estimated ROI.</p>
                 </div>
                 <div class="cap-card">
-                    <div class="cap-icon" style="background: rgba(16,185,129,0.1); color: var(--emerald);">⚡</div>
-                    <h3>Simple Setup</h3>
-                    <p>Plug and play. Voice instructions natively. If you can talk, you can use it.</p>
-                    <ul>
-                        <li>Start capturing booked calls in 24 hours</li>
-                        <li>Voice commands — no clicking through menus</li>
-                        <li>Works exactly like your right-hand man</li>
-                    </ul>
+                    <div class="cap-icon" style="background: rgba(16,185,129,0.1); color: var(--emerald);">3</div>
+                    <h3>Network Deployment</h3>
+                    <p>We deploy fixes across your network — or guide your internal team. Most Tier 1 fixes (schema, redirects, llms.txt) deploy in 48 hours.</p>
+                </div>
+                <div class="cap-card">
+                    <div class="cap-icon" style="background: rgba(99,102,241,0.1); color: var(--indigo);">4</div>
+                    <h3>Monitor & Optimize</h3>
+                    <p>Monthly visibility reports, competitor tracking, and ongoing optimization. Your board sees AI search metrics alongside traditional KPIs.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- AI Receptionist -->
-    <section id="receptionist" class="demo-section">
+    <section id="audit">
         <div class="section-inner">
-            <div class="section-label">15-Second Autonomous Agent Demo</div>
-            <h2 class="section-title">Gemini Powered <span>Virtual Receptionist</span></h2>
-            <p class="section-subtitle">Never lose revenue to a missed booked call again. Our AI answers, engages, and books appointments — 24/7.</p>
+            <div class="section-label">Free Tool</div>
+            <h2 class="section-title">Run Your <span>Free AI Visibility Audit</span></h2>
+            <p class="section-subtitle">Enter any website URL. Get an instant AI visibility score and see what's missing.</p>
             
-            <div class="demo-card">
-                <div class="demo-header">
-                    <div style="width: 36px; height: 36px; border-radius: 8px; background: rgba(6,182,212,0.1); display: flex; align-items: center; justify-content: center; color: var(--cyan);">🤖</div>
-                    <div>
-                        <h3>Missed Call Retrieval & CMS Sync Flow</h3>
-                        <span>LIVE AUTO-RUNNER</span>
-                    </div>
-                </div>
-                <div class="demo-grid">
-                    <div class="demo-box">
-                        <h4>📞 Missed Call Detected</h4>
-                        <p>Customer call missed after hours. Gemini Powered triggers instantly (&lt;80ms).</p>
-                        <div class="chat-bubble">
-                            <strong>Gemini Powered AI:</strong> "Hi Sarah, sorry we missed your call! How can we help you today?"
-                        </div>
-                    </div>
-                    <div class="demo-box">
-                        <h4>✅ Appointment Booked</h4>
-                        <p>AI captures intent, negotiates time, and syncs directly to your CMS.</p>
-                        <div class="chat-bubble" style="background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.2); color: var(--emerald);">
-                            <strong>Confirmed:</strong> Emergency Water Heater Service — Tomorrow 2:00 PM
-                        </div>
-                    </div>
-                </div>
+            <div style="max-width: 600px; margin: 2rem auto; background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; text-align: center;">
+                <p style="color: var(--text-dim); margin-bottom: 1.5rem;">See how visible your business is to AI search platforms like ChatGPT, Claude, and Perplexity.</p>
+                <a href="https://proplum-ai-audit.netlify.app" class="btn-primary" style="width: 100%; justify-content: center;">🔍 Start Free Audit</a>
             </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="section-inner">
+            <div class="section-label">About</div>
+            <h2 class="section-title">Built for <span>Multi-Location Brands</span></h2>
+            <p class="section-subtitle">Lever AI is an AI search visibility platform built specifically for franchise networks, multi-location service brands, and enterprise home services.</p>
             
-            <div class="capabilities-grid" style="margin-top: 2rem;">
+            <div class="capabilities-grid">
                 <div class="cap-card">
-                    <div class="cap-icon" style="background: rgba(245,158,11,0.1); color: var(--gold);">⚡</div>
-                    <h4>Instant Missed Call Intercept</h4>
-                    <p style="font-size: 0.85rem;">Triggers within milliseconds when an inbound call goes unanswered. Keeps high-intent leads engaged before they call your competitor.</p>
+                    <div class="cap-icon" style="background: rgba(6,182,212,0.1); color: var(--cyan);">🏢</div>
+                    <h3>Franchise Networks</h3>
+                    <p>Deploy consistent AI visibility infrastructure across hundreds of locations while respecting franchisee independence.</p>
                 </div>
                 <div class="cap-card">
-                    <div class="cap-icon" style="background: rgba(6,182,212,0.1); color: var(--cyan);">🗣</div>
-                    <h4>Gemini Powered Natural AI Voice</h4>
-                    <p style="font-size: 0.85rem;">Human-like conversational AI parses complex requests, emergency levels, and custom schedule preferences effortlessly.</p>
+                    <div class="cap-icon" style="background: rgba(99,102,241,0.1); color: var(--indigo);">🏠</div>
+                    <h3>Home Services</h3>
+                    <p>Plumbing, HVAC, electrical, and related trades where local search dominance directly impacts revenue.</p>
                 </div>
                 <div class="cap-card">
-                    <div class="cap-icon" style="background: rgba(16,185,129,0.1); color: var(--emerald);">🔗</div>
-                    <h4>Direct CMS & Calendar Integration</h4>
-                    <p style="font-size: 0.85rem;">Native webhooks and API integrations push confirmed appointments into ServiceTitan, HubSpot, Salesforce, or your custom CMS.</p>
+                    <div class="cap-icon" style="background: rgba(16,185,129,0.1); color: var(--emerald);">📈</div>
+                    <h3>PE-Backed Companies</h3>
+                    <p>Board-ready reporting, risk disclosures, and due diligence documentation for investment committees.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Target Cities -->
-    <section id="cities">
-        <div class="section-inner">
-            <div class="section-label">200 Target Cities • Nationwide Coverage</div>
-            <h2 class="section-title">Target Cities We Serve & <span>Local Map Pack Intelligence</span></h2>
-            <p class="section-subtitle">We monitor local market dynamics, competitor densities, Google Map Pack rankings, and threat indicators across 200 key metropolitan cities.</p>
-            
-            <div class="cities-grid">
-                <div class="city-card"><h3>Hartford, CT</h3><span>Region: Northeast • Rank #1</span></div>
-                <div class="city-card"><h3>Ogden, UT</h3><span>Region: West • Rank #2</span></div>
-                <div class="city-card"><h3>Dayton, OH</h3><span>Region: Midwest • Rank #3</span></div>
-                <div class="city-card"><h3>Columbia, SC</h3><span>Region: South • Rank #4</span></div>
-                <div class="city-card"><h3>New Haven, CT</h3><span>Region: Northeast • Rank #5</span></div>
-                <div class="city-card"><h3>Providence, RI</h3><span>Region: Northeast • Rank #6</span></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing -->
-    <section id="pricing">
-        <div class="section-inner">
-            <div class="section-label">7-Day Free Trial • No Risk</div>
-            <h2 class="section-title">Pick the Plan That Fits <span>Your Business</span></h2>
-            <p class="section-subtitle">Start with a 7-day free trial. Upgrade when you're ready to dominate your local market.</p>
-            
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3>Starter Market</h3>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">Single truck, single city. Lock your territory before the next guy does.</p>
-                    <div class="price">$499<span>/ month</span></div>
-                    <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 1rem;">+ <strong>$0.15/min</strong> talk time • 6-month minimum</p>
-                    <ul>
-                        <li>Missed Call Recovery — instant text-back to every missed caller</li>
-                        <li>24/7 AI Answering — books while you sleep</li>
-                        <li>CRM Integration — ServiceTitan, Housecall Pro, or spreadsheet</li>
-                        <li>Lead Qualification — filters price-shoppers before they waste your time</li>
-                        <li>Exclusivity guarantee in your service area</li>
-                    </ul>
-                    <a href="tel:8134913950" class="btn-secondary" style="width: 100%; justify-content: center;">Claim Your Market →</a>
-                </div>
-                <div class="pricing-card popular">
-                    <div class="popular-badge">MOST POPULAR</div>
-                    <h3>Growth Market</h3>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">Multiple trucks, multiple crews. The full system for shops that are scaling.</p>
-                    <div class="price">$999<span>/ month</span></div>
-                    <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 1rem;">+ <strong>$0.08/min</strong> talk time • White-glove onboarding</p>
-                    <ul>
-                        <li>Everything in Starter, plus:</li>
-                        <li>Smart Call Routing — routes by ZIP to the right crew automatically</li>
-                        <li>Brand Voice Training — AI learns your tone</li>
-                        <li>Multi-City Dispatch — run multiple territories from one dashboard</li>
-                        <li>Dedicated Business Line — your own local number</li>
-                        <li>Priority Response — faster answer times, higher concurrency</li>
-                    </ul>
-                    <a href="tel:8134913950" class="btn-primary" style="width: 100%; justify-content: center;">Lock In Growth →</a>
-                </div>
-                <div class="pricing-card">
-                    <h3>Market Dominator</h3>
-                    <p style="color: var(--text-muted); font-size: 0.85rem;">Own the territory. Predictable billing, zero anxiety.</p>
-                    <div class="price">$2,499<span>/ month</span></div>
-                    <p style="color: var(--text-dim); font-size: 0.85rem; margin-bottom: 1rem;"><strong>1,000 mins included</strong> • Additional at $0.05/min</p>
-                    <ul>
-                        <li>Everything in Growth, plus:</li>
-                        <li>Custom Voice Clone — AI sounds exactly like you</li>
-                        <li>Crew & Sub Portal — give crews their own login</li>
-                        <li>Weekly Intelligence Reports — delivered every Monday</li>
-                        <li>Dedicated Account Manager — direct line to our team</li>
-                        <li>Full Integration Stack — ServiceTitan, Housecall Pro, Jobber, QuickBooks</li>
-                        <li>Annual contract. Custom terms for multi-market operators.</li>
-                    </ul>
-                    <a href="tel:8134913950" class="btn-secondary" style="width: 100%; justify-content: center;">Talk to Sales →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section id="testimonials" style="background: linear-gradient(180deg, var(--navy) 0%, rgba(6,182,212,0.03) 50%, var(--navy) 100%);">
-        <div class="section-inner">
-            <div class="section-label">Real Results</div>
-            <h2 class="section-title">Plumbers Who <span>Stopped Missing Calls</span></h2>
-            <p class="section-subtitle">Actual results from contractors who deployed ProPlum in their market.</p>
-            
-            <div class="capabilities-grid" style="margin-top: 2rem;">
-                <div class="cap-card" style="border-color: rgba(6,182,212,0.15);">
-                    <div style="font-size: 1.5rem; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
-                    <p style="font-style: italic; color: var(--text); margin-bottom: 1rem;">"I was missing 12 booked calls a week between jobs and after hours. In the first month, ProPlum recovered 8 jobs I would've lost. That's an extra $6,400 in revenue."</p>
-                    <div style="display: flex; align-items: center; gap: 0.75rem;">
-                        <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan), var(--indigo)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white;">M</div>
-                        <div>
-                            <div style="font-weight: 700; font-size: 0.9rem;">Mike R.</div>
-                            <div style="font-size: 0.8rem; color: var(--text-muted);">Tampa, FL • 3-truck operation</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cap-card" style="border-color: rgba(16,185,129,0.15);">
-                    <div style="font-size: 1.5rem; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
-                    <p style="font-style: italic; color: var(--text); margin-bottom: 1rem;">"The AI sounds professional — customers don't realize it's not a human. My wife used to handle calls, now she doesn't have to be glued to the phone."</p>
-                    <div style="display: flex; align-items: center; gap: 0.75rem;">
-                        <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--emerald), var(--cyan)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white;">D</div>
-                        <div>
-                            <div style="font-weight: 700; font-size: 0.9rem;">David S.</div>
-                            <div style="font-size: 0.8rem; color: var(--text-muted);">Ogden, UT • Family-owned since 2014</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cap-card" style="border-color: rgba(245,158,11,0.15);">
-                    <div style="font-size: 1.5rem; margin-bottom: 1rem;">⭐⭐⭐⭐⭐</div>
-                    <p style="font-style: italic; color: var(--text); margin-bottom: 1rem;">"I was skeptical. Thought it would sound robotic. First week it booked a $4,200 water heater replacement at 10:30 PM. I was asleep. Customer never knew the difference."</p>
-                    <div style="display: flex; align-items: center; gap: 0.75rem;">
-                        <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--emerald)); display: flex; align-items: center; justify-content: center; font-weight: 700; color: white;">J</div>
-                        <div>
-                            <div style="font-weight: 700; font-size: 0.9rem;">James T.</div>
-                            <div style="font-size: 0.8rem; color: var(--text-muted);">High Point, NC • Solo operator</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq">
-        <div class="section-inner" style="max-width: 800px;">
-            <div class="section-label">Questions</div>
-            <h2 class="section-title">Straight <span>Answers</span></h2>
-            <p class="section-subtitle">No corporate speak. Just the facts.</p>
-            
-            <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem;">
-                <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem;">
-                    <summary style="font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span>Will this sound like a robot to my customers?</span>
-                        <span style="color: var(--cyan);">+</span>
-                    </summary>
-                    <p style="margin-top: 1rem; color: var(--text-dim); line-height: 1.6;">No. We use Gemini-powered voice AI that handles interruptions, pauses, and natural speech patterns. Most customers don't realize they're talking to AI until you tell them. You can even clone your own voice or train it to match your team's tone.</p>
-                </details>
-                
-                <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem;">
-                    <summary style="font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span>How long until I'm capturing booked calls?</span>
-                        <span style="color: var(--cyan);">+</span>
-                    </summary>
-                    <p style="margin-top: 1rem; color: var(--text-dim); line-height: 1.6;">Your AI starts answering calls within 24 hours of signup. Full system setup — integrations, call routing, voice training — takes 7-14 days depending on your CRM. We don't promise 15 minutes because that's bullshit. We promise it works.</p>
-                </details>
-                
-                <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem;">
-                    <summary style="font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span>What if it books a job I can't handle?</span>
-                        <span style="color: var(--cyan);">+</span>
-                    </summary>
-                    <p style="margin-top: 1rem; color: var(--text-dim); line-height: 1.6;">You set your own availability, service areas, and capacity limits. The AI only books within the parameters you define. Emergency calls get flagged for immediate callback. You're always in control — the AI just stops you from missing opportunities.</p>
-                </details>
-                
-                <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem;">
-                    <summary style="font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span>Is my territory really exclusive?</span>
-                        <span style="color: var(--cyan);">+</span>
-                    </summary>
-                    <p style="margin-top: 1rem; color: var(--text-dim); line-height: 1.6;">Yes. One plumber per service area. If we sign someone in your ZIP code, we won't sign your competitor. Period. That's in writing in your agreement. We win when you win — not by selling the same territory twice.</p>
-                </details>
-                
-                <details style="background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem;">
-                    <summary style="font-weight: 700; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center;">
-                        <span>Can I cancel if it doesn't work?</span>
-                        <span style="color: var(--cyan);">+</span>
-                    </summary>
-                    <p style="margin-top: 1rem; color: var(--text-dim); line-height: 1.6;">Starter and Growth plans are month-to-month after your first 30 days. No annual contract, no cancellation fees. If it's not making you money, you shouldn't pay. We're betting our business on you staying because it works, not because you're locked in.</p>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
     <section class="cta-section">
-        <h2>Ready to Stop Missing Calls?</h2>
-        <p>Start capturing every booked call in 24 hours. Full system deployed in 7-14 days. No code. No bullshit.</p>
-        <a href="sms:8134913950?body=PUT%20ME%20IN%20COACH" class="btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;">🎬 Text "PUT ME IN COACH" to 813.491.3950</a>
+        <h2>Don't Wait for Competitors to Capture Your Markets</h2>
+        <p>AI search is winner-take-most. Early movers gain compounding authority. The cost of catching up exceeds the cost of leading.</p>
+        <a href="https://proplum-ai-audit.netlify.app" class="btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;">🔍 Run Free AI Visibility Audit</a>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-inner">
             <div class="footer-brand">
                 <a href="#" class="logo">
                     <div class="logo-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" color="white"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>
                     </div>
                     <div class="logo-text">
-                        <span>ProPlum Network</span>
-                        <span>AI Marketing for Plumbers</span>
+                        <span>Lever AI</span>
+                        <span>AI Search Visibility Platform</span>
                     </div>
                 </a>
-                <p>The low-latency event processing, automated stream orchestration, and real-time observability platform built for modern plumbing contractors.</p>
+                <p>AI search visibility infrastructure for multi-location brands, franchise networks, and enterprise service companies.</p>
             </div>
             <div class="footer-col">
                 <h4>Product</h4>
-                <a href="#features">AI Website</a>
-                <a href="#receptionist">Virtual Receptionist</a>
-                <a href="#cities">Local SEO</a>
-                <a href="#pricing">Pricing</a>
+                <a href="https://proplum-ai-audit.netlify.app">AI Visibility Audit</a>
+                <a href="#">Schema Deployment</a>
+                <a href="#">Competitor Intelligence</a>
+                <a href="#">Franchise Dashboard</a>
             </div>
             <div class="footer-col">
                 <h4>Resources</h4>
+                <a href="https://proplum-franchise-case-study.netlify.app">Case Study: 1-Tom-Plumber</a>
                 <a href="#">Documentation</a>
-                <a href="#">API Reference</a>
                 <a href="#">Blog</a>
-                <a href="#">System Status</a>
             </div>
             <div class="footer-col">
-                <h4>Hold My Beer I Got This for You</h4>
-                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">Get the playbook, tips, and tricks we don't share anywhere else.</p>
-                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thanks for subscribing!');">
-                    <input type="email" placeholder="you@company.com" required>
-                    <button type="submit">Join</button>
-                </form>
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 ProPlum Network Inc. All rights reserved.</p>
-            <div style="display: flex; gap: 1.5rem;">
-                <a href="#" style="color: var(--text-muted); text-decoration: none;">Privacy</a>
-                <a href="#" style="color: var(--text-muted); text-decoration: none;">Terms</a>
-                <a href="#" style="color: var(--text-muted); text-decoration: none;">Security</a>
-            </div>
+            <p>© 2026 Lever AI Inc. All rights reserved.</p>
+            <p>Built for the AI search era.</p>
         </div>
     </footer>
 </body>

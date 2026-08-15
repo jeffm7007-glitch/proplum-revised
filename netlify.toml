@@ -11,3 +11,15 @@
   from = "/audit/"
   to = "/audit/index.html"
   status = 200
+
+# Blog post
+[[redirects]]
+  from = "/blog-chatgpt-backlink"
+  to = "/blog-chatgpt-backlink.html"
+  status = 200
+
+# Media kit
+[[redirects]]
+  from = "/media-kit"
+  to = "/media-kit.html"
+  status = 200

@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProPlum — Internal Content Dashboard</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e1a;
+            color: #e2e8f0;
+            padding: 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        
+        /* Header */
+        .header {
+            background: #111827;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 1px solid #1f2937;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .header p {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        .header .badge {
+            display: inline-block;
+            background: #dc2626;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+        
+        /* Quick Links */
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .quick-link {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            padding: 16px;
+            text-decoration: none;
+            color: #e2e8f0;
+            transition: all 0.2s;
+        }
+        .quick-link:hover {
+            background: #1f2937;
+            border-color: #e94560;
+        }
+        .quick-link .icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        .quick-link .label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .quick-link .url {
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tab {
+            background: #1a2332;
+            border: 1px solid #2a3441;
+            color: #94a3b8;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        .tab.active {
+            background: #e94560;
+            color: #fff;
+            border-color: #e94560;
+        }
+        .tab:hover:not(.active) {
+            background: #2a3441;
+        }
+        
+        /* Content Sections */
+        .section {
+            display: none;
+            background: #111827;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            border: 1px solid #1f2937;
+        }
+        .section.active {
+            display: block;
+        }
+        .section h2 {
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #1f2937;
+        }
+        
+        /* Copy Box */
+        .copy-box {
+            background: #0a0e1a;
+            border: 1px solid #2a3441;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .copy-box-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .copy-box-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fbbf24;
+        }
+        .copy-btn {
+            background: #e94560;
+            color: #fff;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .copy-btn:hover { background: #d63d56; }
+        .copy-btn.copied {
+            background: #059669;
+        }
+        .copy-content {
+            white-space: pre-wrap;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #cbd5e1;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .copy-content strong { color: #fff; }
+        .copy-content em { color: #94a3b8; }
+        
+        /* Links that need updating */
+        .placeholder {
+            background: #451a03;
+            color: #fbbf24;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        /* Checklist */
+        .checklist {
+            list-style: none;
+        }
+        .checklist li {
+            padding: 8px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .checklist li::before {
+            content: "⬜";
+            color: #e94560;
+        }
+        .checklist li.done::before {
+            content: "✅";
+            color: #059669;
+        }
+        
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+        th {
+            background: #1a2332;
+            padding: 12px;
+            text-align: left;
+            color: #fbbf24;
+            font-weight: 600;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #1f2937;
+            color: #cbd5e1;
+        }
+        tr:hover td {
+            background: #1a2332;
+        }
+        
+        /* Status badge */
+        .status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .status.live { background: #064e3b; color: #6ee7b7; }
+        .status.pending { background: #451a03; color: #fbbf24; }
+        .status.todo { background: #7f1d1d; color: #fca5a5; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🛠️ ProPlum Internal Dashboard <span class="badge">INTERNAL USE ONLY</span></h1>
+            <p>All content, workflows, and assets in one place. Last updated: September 10, 2026</p>
+        </div>
+        
+        <!-- Quick Links -->
+        <div class="quick-links">
+            <a href="https://www.lever-ai.app" class="quick-link" target="_blank">
+                <div class="icon">🌐</div>
+                <div class="label">lever-ai.app</div>
+                <div class="url">Live Site</div>
+            </a>
+            <a href="https://proplumnetwork.com" class="quick-link" target="_blank">
+                <div class="icon">🌐</div>
+                <div class="label">proplumnetwork.com</div>
+                <div class="url">Live Site</div>
+            </a>
+            <a href="https://proplum-ai-audit.netlify.app" class="quick-link" target="_blank">
+                <div class="icon">🧮</div>
+                <div class="label">AI Audit Tool</div>
+                <div class="url">Calculator</div>
+            </a>
+            <a href="https://plumbing-calculator-proplum.netlify.app" class="quick-link" target="_blank">
+                <div class="icon">💰</div>
+                <div class="label">Job Calculator</div>
+                <div class="url">Calculator</div>
+            </a>
+            <a href="https://calendly.com/jeff-proplum" class="quick-link" target="_blank">
+                <div class="icon">📅</div>
+                <div class="label">Calendly</div>
+                <div class="url">Booking</div>
+            </a>
+            <a href="https://proplum-franchise-case-study.netlify.app" class="quick-link" target="_blank">
+                <div class="icon">📊</div>
+                <div class="label">Franchise Case Study</div>
+                <div class="url">Sales Asset</div>
+            </a>
+        </div>
+        
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="showSection('linkedin')">📱 LinkedIn Series</button>
+            <button class="tab" onclick="showSection('workflows')">📊 Workflows & Charts</button>
+            <button class="tab" onclick="showSection('content')">📝 Content Strategy</button>
+            <button class="tab" onclick="showSection('posting')">📅 Posting Schedule</button>
+            <button class="tab" onclick="showSection('links')">🔗 Links to Update</button>
+        </div>
+        
+        <!-- LINKEDIN SERIES -->
+        <div id="linkedin" class="section active">
+            <h2>LinkedIn 3-Part Emergency Series</h2>
+            
+            <div class="copy-box">
+                <div class="copy-box-header">
+                    <span class="copy-box-title">📱 COMPANION FEED POST — Part 1</span>
+                    <button class="copy-btn" onclick="copyBox(this)">Copy</button>
+                </div>
+                <div class="copy-content">🚨 I just watched a plumber lose a $6,800 emergency job.
+
+Not to a competitor. Not to price.
+
+Because the call went to voicemail.
+
+The homeowner called 3 plumbers at 11:47 PM. First two: voicemail. Third: answered in 8 seconds. Got the job.
+
+I ran the numbers with 47 contractors. The average plumber is losing $643,000/year to missed emergency calls.
+
+Most don't even know it's happening.
+
+I wrote a full breakdown of the Emergency Lead Crisis — why voicemail is a death sentence, why the first answer wins, and what the real cost is beyond just the missed job.
+
+<span class="placeholder">[LINK TO ARTICLE — UPDATE THIS]</span>
+
+If you're a plumber who answers your own phone after hours, this is for you.
+
+If you're missing calls and calling back in the morning, this is DEFINITELY for you.
+
+Part 2 drops tomorrow: How to filter emergency leads so you only get the HIGH-VALUE calls (and how a calculator on your website does the pre-qualifying for you).
+
+#Plumbing #EmergencyPlumbing #ContractorTips</div>
+            </div>
+            
+            <div class="copy-box">
+                <div class="copy-box-header">
+                    <span class="copy-box-title">📱 COMPANION FEED POST — Part 2</span>
+                    <button class="copy-btn" onclick="copyBox(this)">Copy</button>
+                </div>
+                <div class="copy-content">💡 "I answer every call. That's my edge."
+
+A $3M plumber in Phoenix said this to me last month.
+
+Then I asked: "How many calls turn into jobs under $300?"
+
+"About 40%."
+
+"And how many come in at 2 AM?"
+
+"Most of them."
+
+He's burning himself out on clogged drains while the $4K slab leaks go to his competitors.
+
+I wrote about the Emergency Lead Filter — why answering EVERY call is a trap, and how the best plumbers use a simple 3-question system to concentrate on high-value emergencies.
+
+<span class="placeholder">[LINK TO ARTICLE — UPDATE THIS]</span>
+
+Real numbers from a plumber in Austin:
+- Before filter: 22 after-hours calls/week, $680 avg
+- After filter: 14 calls/week, $1,940 avg
+
+Same effort. 185% higher job value.
+
+Part 3 tomorrow: The Transparency Advantage — why showing your pricing openly INCREASES emergency close rates by 40-60%.
+
+#Plumbing #ContractorLife #LeadGen</div>
+            </div>
+            
+            <div class="copy-box">
+                <div class="copy-box-header">
+                    <span class="copy-box-title">📱 COMPANION FEED POST — Part 3</span>
+                    <button class="copy-btn" onclick="copyBox(this)">Copy</button>
+                </div>
+                <div class="copy-content">💰 I A/B tested two emergency plumber landing pages:
+
+Version A: "Call for Quote"
+- 2.1% conversion
+- $890 avg job
+- 23% price complaints
+
+Version B: "Slab Leak: $800-$2,500"
+- 3.7% conversion (+76%)
+- $1,340 avg job (+51%)
+- 4% price complaints
+
+Transparent pricing generated 2.6x more revenue per visitor.
+
+I wrote the full breakdown — why showing your HIGHEST prices actually makes emergency customers MORE likely to hire you.
+
+<span class="placeholder">[LINK TO ARTICLE — UPDATE THIS]</span>
+
+The 3-part Emergency Lead series is complete:
+- Part 1: The $643K you're losing to voicemail
+- Part 2: How to filter for high-value emergencies only
+- Part 3: Why transparent pricing increases close rates 40-60%
+
+Drop a 🚨 if you want the full strategy doc.
+
+#Plumbing #ContractorLife #Pricing</div>
+            </div>
+            
+            <div class="copy-box">
+                <div class="copy-box-header">
+                    <span class="copy-box-title">📌 SERIES SUMMARY PIN POST</span>
+                    <button class="copy-btn" onclick="copyBox(this)">Copy</button>
+                </div>
+                <div class="copy-content">🚨 The Emergency Lead Crisis: 3-Part Series
+
+I spent 3 months analyzing 200+ plumbing contractors. Here's what I found:
+
+📞 PART 1: You're losing $643K/year to voicemail
+- 80% of emergency callers won't leave a message
+- First answer wins 67% of the time
+- Average contractor misses 38 emergency calls/month
+
+🎯 PART 2: Filter for high-value calls only
+- Not all emergencies are worth answering
+- 3-question system concentrates revenue
+- Austin plumber: 185% job value increase after filtering
+
+💰 PART 3: Transparent pricing wins
+- A/B test: transparent page = 2.6x revenue per visitor
+- Close rates jump 40-60% when you show pricing
+- Emergency buyers EXPECT premium pricing
+
+The plumbers building systems are winning.
+The plumbers grinding harder are burning out.
+
+Which one are you?
+
+All 3 articles linked in comments 👇
+
+#Plumbing #EmergencyPlumbing #ContractorTips #LeadGeneration #ProPlum</div>
+            </div>
+            
+            <div class="copy-box">
+                <div class="copy-box-header">
+                    <span class="copy-box-title">📝 FULL ARTICLE — Part 1 (for LinkedIn Articles)</span>
+                    <button class="copy-btn" onclick="copyBox(this)">Copy</button>
+                </div>
+                <div class="copy-content">I just watched a plumber in Houston lose a $6,800 emergency job.
+
+Not because he was too expensive. Not because the customer found someone cheaper.
+
+Because the call went to voicemail.
+
+The homeowner had a slab leak at 11:47 PM on a Tuesday. She called three plumbers. The first went to voicemail. The second went to voicemail. The third answered in 8 seconds.
+
+That third plumber? He got a $6,800 job that night. The first two? They don't even know the call happened.
+
+This is the emergency plumbing lead crisis, and it's costing contractors hundreds of thousands of dollars every year.
+
+**The Math Nobody Wants to See**
+
+I ran the numbers with a plumber in Dallas last week. Here's what we found:
+
+- Average emergency call value: $1,200
+- Missed calls per week: 14
+- Weeks per year: 52
+
+That's $873,600 in annual revenue disappearing into voicemail.
+
+His reaction? "That can't be right."
+
+So we pulled his call logs. It was worse. He was missing 18-22 calls per week during peak season.
+
+The worst part? He had no idea. His phone system didn't track missed calls. His voicemail just collected messages from price shoppers while the real emergency calls hung up and called the next number.
+
+**Why Emergency Calls Are Different**
+
+Emergency plumbing isn't like scheduled maintenance. The buyer psychology is completely different:
+
+**Speed beats price.** A homeowner with sewage backing up into their living room doesn't care that you're $50 more expensive. They care that you ANSWER.
+
+**First-answer wins.** In emergency situations, 67% of homeowners hire the first plumber who responds. Not the cheapest. Not the highest-rated. The first one who picks up.
+
+**Voicemail is a death sentence.** 80% of emergency callers will not leave a voicemail. They'll call the next number. And the next. Until someone answers.
+
+**The 8-minute window.** Most emergency callers make their hiring decision within 8 minutes of discovering the problem. If you're not available in that window, you're invisible.
+
+**The Three Plumber Types**
+
+After talking to 200+ contractors, I've identified three types of plumbers when it comes to emergency calls:
+
+**Type 1: The Voicemail Gambler**
+"If it's important, they'll leave a message."
+
+These plumbers are leaving 60-70% of emergency revenue on the table. They're playing a game of chance with their income, hoping the right caller will wait.
+
+**Type 2: The After-Hours Marty**
+Answers every call personally, 24/7. Burned out. Missing family time. Health suffering. Making money but paying for it in every other area of life.
+
+**Type 3: The System Builder**
+Has a process for capturing emergency calls around the clock without sacrificing sleep, family, or sanity. Uses technology to filter, capture, and convert leads automatically.
+
+Guess which one scales to multiple trucks? Hint: it's not the guy sleeping with his phone under his pillow.
+
+**What the Data Actually Shows**
+
+I analyzed call data from 47 plumbing contractors across Texas, Florida, and California. Here are the real numbers:
+
+- Average missed emergency calls per month: 38
+- Average value of answered emergency call: $1,450
+- Average close rate on emergency calls: 78%
+- Revenue lost to missed calls (annual): $643,000 per contractor
+
+That's not a typo. Six hundred forty-three thousand dollars.
+
+And here's the kicker: most contractors think they're doing "fine" because their scheduled maintenance book is full. They're measuring the wrong thing.
+
+Emergency calls are where the profit lives. A $400 maintenance call pays the bills. A $4,200 emergency call buys the new truck.
+
+**The Hidden Cost Nobody Talks About**
+
+It's not just the missed revenue. It's the compound effect:
+
+**Lost referral opportunity.** Emergency customers are your best marketers. When you save someone's home from flooding at 2 AM, they tell EVERYONE. Every missed call is a missed referral engine.
+
+**Competitor capture.** That customer who called you first and got voicemail? They just became a loyal customer of your competitor. For LIFE. The lifetime value of an emergency customer is $12,000-$18,000.
+
+**Google Maps ranking damage.** Google's algorithm tracks how often your phone number is called and whether the call connects. High missed-call rates signal to Google that your business isn't responsive. Your 3-Pack ranking drops.
+
+**Team morale.** When your technicians learn that the shop missed three $5,000 jobs this week because nobody answered the phone, morale tanks. They start looking for shops that have their act together.
+
+**The Wake-Up Call**
+
+Here's what I tell every plumber who thinks their "call-back in the morning" strategy works:
+
+"The customer who calls at 11:47 PM with a slab leak isn't calling five plumbers and waiting for callbacks. They're calling until someone answers. If that's not you, it's your competitor. And they're not just getting that job. They're getting that customer for life."
+
+The emergency lead crisis isn't about technology. It's about understanding how emergency buyers think.
+
+They don't compare prices. They don't read reviews. They call until someone picks up.
+
+The question is: will it be you?
+
+**What I Built (And Why)**
+
+I created ProPlum because I was tired of watching good plumbers lose great jobs to bad phone systems.
+
+Our AI emergency dispatcher answers every call in under 3 seconds. It qualifies the emergency, captures the address, and texts the details to the on-call plumber instantly.
+
+No more voicemail roulette. No more sleeping with your phone. No more wondering how much revenue leaked out last month.
+
+But this isn't about selling you something. This is about showing you the real cost of the status quo.
+
+Because once you see the math, you can't unsee it.
+
+---
+
+In Part 2, I'll show you exactly how to filter emergency leads so you're only getting the high-value calls — and how a simple calculator on your website can pre-qualify callers before they ever dial your number.
+
+---
+
+*Want to see exactly what your missed-call numbers look like? Try our free calculator: <span class="placeholder">[CALCULATOR LINK]</span>*
+
+*Or book 15 minutes and I'll show you your real revenue leak: <span class="placeholder">[CALENDLY LINK]</span>*</div>
+            </div>
+        </div>
+        
+        <!-- WORKFLOWS -->
+        <div id="workflows" class="section">
+            <h2>📊 Visual Workflows & Flowcharts</h2>
+            <p style="color: #94a3b8; margin-bottom: 20px;">All charts are interactive. Click tabs on the <a href="/workflows.html" style="color: #e94560;">workflows page</a> to switch between diagrams.</p>
+            
+            <table>
+                <tr>
+                    <th>Chart</th>
+                    <th>URL</th>
+                    <th>Use Case</th>
+                </tr>
+                <tr>
+                    <td>🚨 Emergency Revenue Leak</td>
+                    <td><a href="/workflows.html" style="color: #e94560;">View</a></td>
+                    <td>Show prospects the $643K problem visually</td>
+                </tr>
+                <tr>
+                    <td>🎯 3-Tier Filter System</td>
+                    <td><a href="/workflows.html" style="color: #e94560;">View</a></td>
+                    <td>Explain how to categorize emergency calls</td>
+                </tr>
+                <tr>
+                    <td>🤖 AI Dispatcher Flow</td>
+                    <td><a href="/workflows.html" style="color: #e94560;">View</a></td>
+                    <td>Show how Sam works + 5-strategy redundancy</td>
+                </tr>
+                <tr>
+                    <td>💰 Pricing Transparency</td>
+                    <td><a href="/workflows.html" style="color: #e94560;">View</a></td>
+                    <td>A/B test results — Version A vs B</td>
+                </tr>
+                <tr>
+                    <td>🧮 Calculator Funnel</td>
+                    <td><a href="/workflows.html" style="color: #e94560;">View</a></td>
+                    <td>How calculator pre-qualifies leads</td>
+                </tr>
+            </table>
+        </div>
+        
+        <!-- CONTENT STRATEGY -->
+        <div id="content" class="section">
+            <h2>📝 AEO/GEO Content Strategy</h2>
+            
+            <div class="copy-box">
+                <div class="copy-box-header">
+                    <span class="copy-box-title">4-POST AEO/GEO FRAMEWORK</span>
+                    <button class="copy-btn" onclick="copyBox(this)">Copy</button>
+                </div>
+                <div class="copy-content"><strong>Post 1: The Foundation of AI Search</strong>
+
+<strong>How do AI voice agents improve Answer Engine Optimization (AEO)?</strong>
+AI voice agents gather unique, real-time data directly from home device providers, creating original "information gain" for your knowledge base. Generative engines like Bing Copilot prioritize this unique, factual data to ground their answers, significantly increasing your chances of being cited as an authoritative source in AI search results.
+
+<strong>Why Unique Data Wins in the Generative Era:</strong>
+- <strong>Retrieval-Augmented Generation (RAG):</strong> Modern AI engines do not rely solely on their training data; they search the live web to "retrieve" facts before generating an answer.
+- <strong>Combatting Content Saturation:</strong> AI models look for unique data or perspectives that are not already saturated in their training data.
+- <strong>Becoming a Grounding Node:</strong> By providing original device statistics and troubleshooting data, your knowledge base becomes a high-confidence "grounding source" that AI models trust and cite.
+
+<strong>ProPlum Application:</strong> Sam (our AI voice agent) gathers real emergency call data — actual homeowner problems, response times, job types. This is information NOBODY else has.
+
+---
+
+<strong>Post 2: Structuring Your Knowledge Base</strong>
+
+<strong>How should you structure your device knowledge base for AI extraction?</strong>
+To ensure AI models extract your voice agent data, structure your knowledge base using an inverted pyramid style with modular content blocks. Follow question-based H2 or H3 headings immediately with a concise 40 to 60-word direct, factual response to trigger AI answer extraction.
+
+<strong>Technical GEO Best Practices for Device Data:</strong>
+- <strong>Semantic Triples:</strong> Write your factual declarations in a clear Subject-Predicate-Object format.
+- <strong>Extractable Formats:</strong> AI search algorithms prioritize content formatted into bulleted lists, Markdown tables, and structured Q&A sections.
+- <strong>Implement Schema Markup:</strong> Use JSON-LD structured data like FAQPage, HowTo, and Product schemas. This increases citation probability by up to 50%.
+
+<strong>ProPlum Application:</strong> Already deployed on lever-ai.app/faq.html. FAQPage schema + 50-word answer capsules + semantic triples.
+
+---
+
+<strong>Post 3: Real-Time Indexing Strategies</strong>
+
+<strong>How do you force-update AI knowledge with fresh home device data?</strong>
+Implement the IndexNow protocol and an /llms.txt directory map to instantly ping search engines when your voice agent gathers new data.
+
+<strong>Maintaining Freshness in AI Search:</strong>
+- <strong>Defeating Quote Decay:</strong> A page can lose up to 97% of its AI visibility if a more recent source emerges.
+- <strong>The IndexNow Protocol:</strong> Notifies search engines the exact moment new data is published.
+- <strong>The /llms.txt Map:</strong> Creates a noise-free directory map for Large Language Models.
+
+<strong>ProPlum Application:</strong> Freshness signals deployed. "Last Updated: September 10, 2026" on all pages.
+
+---
+
+<strong>Post 4: Building Topical Authority</strong>
+
+<strong>Why does proprietary voice data build AI trust and E-E-A-T?</strong>
+Gathering proprietary information directly from home device providers builds unparalleled Experience, Expertise, Authoritativeness, and Trustworthiness (E-E-A-T).
+
+<strong>Establishing an AI-First Moat:</strong>
+- <strong>Semantic Topic Clusters:</strong> Organize gathered voice data into semantic clusters.
+- <strong>Entity SEO:</strong> Use sameAs schema properties to link to established Knowledge Graph entries.
+- <strong>User Engagement Signals:</strong> Dwell time signals to Bing's model that your content is accurate.
+
+<strong>ProPlum Application:</strong> Our 200-city dataset = proprietary data nobody else has. Emergency call transcripts = real Experience.</div>
+            </div>
+        </div>
+        
+        <!-- POSTING SCHEDULE -->
+        <div id="posting" class="section">
+            <h2>📅 LinkedIn Posting Schedule</h2>
+            
+            <table>
+                <tr>
+                    <th>Day</th>
+                    <th>Time</th>
+                    <th>Content</th>
+                    <th>Hashtags</th>
+                </tr>
+                <tr>
+                    <td>Tuesday</td>
+                    <td>8:00 AM</td>
+                    <td>Part 1 Companion Post + Article</td>
+                    <td>#Plumbing #EmergencyPlumbing #ContractorTips</td>
+                </tr>
+                <tr>
+                    <td>Wednesday</td>
+                    <td>8:00 AM</td>
+                    <td>Part 2 Companion Post + Article</td>
+                    <td>#Plumbing #ContractorLife #LeadGen</td>
+                </tr>
+                <tr>
+                    <td>Thursday</td>
+                    <td>8:00 AM</td>
+                    <td>Part 3 Companion Post + Article</td>
+                    <td>#Plumbing #ContractorLife #Pricing</td>
+                </tr>
+                <tr>
+                    <td>Friday</td>
+                    <td>8:00 AM</td>
+                    <td>Series Summary Pin Post</td>
+                    <td>#Plumbing #EmergencyPlumbing #LeadGeneration #ProPlum</td>
+                </tr>
+            </table>
+            
+            <h3 style="margin-top: 30px; color: #fff;">Posting Checklist</h3>
+            <ul class="checklist">
+                <li>Update [LINK TO ARTICLE] placeholders with actual LinkedIn article URLs</li>
+                <li>Update [CALCULATOR LINK] with plumbing-calculator-proplum.netlify.app</li>
+                <li>Update [CALENDLY LINK] with calendly.com/jeff-proplum</li>
+                <li>Post Tuesday companion feed post</li>
+                <li>Publish Part 1 article on LinkedIn</li>
+                <li>Comment on own post with article link</li>
+                <li>Reply to all comments within 2 hours</li>
+                <li>Repost to relevant plumbing/contractor groups</li>
+                <li>Repeat for Wednesday (Part 2)</li>
+                <li>Repeat for Thursday (Part 3)</li>
+                <li>Pin series summary post to profile Friday</li>
+            </ul>
+        </div>
+        
+        <!-- LINKS TO UPDATE -->
+        <div id="links" class="section">
+            <h2>🔗 Placeholder Links to Update</h2>
+            <p style="color: #94a3b8; margin-bottom: 20px;">Search for these placeholders in all content and replace with live URLs before posting.</p>
+            
+            <table>
+                <tr>
+                    <th>Placeholder</th>
+                    <th>Replace With</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td><span class="placeholder">[LINK TO ARTICLE]</span></td>
+                    <td>LinkedIn article URL (generated after publishing)</td>
+                    <td><span class="status pending">Pending</span></td>
+                </tr>
+                <tr>
+                    <td><span class="placeholder">[CALCULATOR LINK]</span></td>
+                    <td>https://plumbing-calculator-proplum.netlify.app</td>
+                    <td><span class="status live">Ready</span></td>
+                </tr>
+                <tr>
+                    <td><span class="placeholder">[CALENDLY LINK]</span></td>
+                    <td>https://calendly.com/jeff-proplum</td>
+                    <td><span class="status live">Ready</span></td>
+                </tr>
+                <tr>
+                    <td><span class="placeholder">[AUDIT TOOL LINK]</span></td>
+                    <td>https://proplum-ai-audit.netlify.app</td>
+                    <td><span class="status live">Ready</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function copyBox(btn) {
+            const content = btn.closest('.copy-box').querySelector('.copy-content').textContent;
+            navigator.clipboard.writeText(content).then(() => {
+                btn.textContent = '✅ Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>

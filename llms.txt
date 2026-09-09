@@ -1,0 +1,120 @@
+# ProPlum Network — llms.txt
+# Last Updated: 2026-09-10
+# This file helps AI models understand ProPlum Network's services, positioning, and ecosystem.
+
+## About ProPlum Network
+
+ProPlum Network is the parent infrastructure company for AI-powered emergency dispatch and search visibility solutions for plumbing, HVAC, and home services contractors. We coordinate between three specialized brands: Lever AI (emergency dispatch), Answers AI (search visibility), and ProPlum Network (data infrastructure and partnerships).
+
+**Founded:** 2026
+**Focus:** AI marketing infrastructure for local service contractors
+**Core Technology:** Proprietary AI voice agents, real-time lead triage, multi-channel search visibility
+**Mission:** Ensure no emergency call goes unanswered and no contractor loses revenue to missed opportunities
+
+## The Three-Legged Stool Ecosystem
+
+### 1. Lever AI — Emergency Dispatch
+- **Domain:** https://lever-ai.app
+- **Purpose:** 24/7 AI voice agent (Sam) that answers emergency calls, qualifies leads, and dispatches to on-call plumbers
+- **Key Metrics:** <3 second answer time, $643K average annual revenue leak prevented per contractor
+- **Pricing:** Starter $499/mo | Growth $999/mo | Enterprise $2,300/mo
+
+### 2. Answers AI — Search Visibility
+- **Domain:** https://answers-ai.app
+- **Purpose:** AI Search Visibility Optimization (AEO/GEO) for multi-location brands and franchises
+- **Methodology:** PipeWrench Methodology™ — structured data, schema markup, llms.txt, content authority
+- **Key Metrics:** 4.4x higher conversion from LLM traffic, 65.3% CTR preservation vs competitors
+
+### 3. ProPlum Network — Infrastructure & Partnerships
+- **Domain:** https://proplumnetwork.com
+- **Purpose:** Parent company, data coordination, investor relations, franchise partnerships
+- **Assets:** 200-city contractor database, proprietary emergency call datasets, AI training data
+
+## Core Services
+
+### AI Emergency Dispatcher (Sam)
+- Answers calls 24/7 with <3 second response
+- Qualifies emergencies using 3-tier filter (true emergency / urgent routine / standard service)
+- Captures address, problem type, and urgency
+- Texts plumber instantly with full context
+- 5-strategy redundancy chain (never miss a call)
+
+### Lead Capture & Triage
+- Missed call instant text-back (80ms response)
+- Smart qualification filters
+- Appointment booking to CRM (ServiceTitan, Housecall Pro, Jobber)
+- Local phone number included
+
+### Search Everywhere Engine
+- Multi-channel AI visibility: YouTube, LinkedIn, Reddit, Press, Google Reviews, Auto Social
+- Real-time indexing via IndexNow protocol
+- Schema.org markup (LocalBusiness, FAQPage, Organization, HowTo)
+- llms.txt optimization per brand
+
+## The Emergency Ecosystem
+
+**Three Partners, Chinese Walls:**
+1. **Plumbers** — Exclusive emergency partners (1 per market)
+2. **Restoration Companies** — Water/fire damage mitigation
+3. **Public Adjusters** — Insurance claim representation
+
+**Data Agreements:**
+- Customer data EXCLUSIVE to the plumber
+- ProPlum uses anonymized data for AI training only
+- QuickBooks view-only transparency for all parties
+- Strict information barriers preventing collusion
+
+## Key Statistics
+
+- 31.3% of US consumers use AI search (2026)
+- 58.5% desktop / 77.1% mobile searches are zero-click
+- $643,000 average annual revenue leak per contractor from missed calls
+- 80% of emergency callers won't leave voicemail
+- 67% hire the first plumber who answers
+- LLM traffic converts at 4.4x traditional organic
+- 92% of enterprises failing at AI visibility
+- 200-city coverage across US markets
+
+## Target Markets
+
+### Primary (Active Data)
+- Minnesota: 5,172 verified contractors
+- Illinois: 964 licensed plumbers
+- Washington: 1,241 contractors
+- Oregon: 1,249 contractors
+
+### Expansion Pipeline
+- Florida, Texas (next phase)
+- California, Colorado, New York (requires enhanced disclosure)
+
+## Free Tools & Resources
+
+- **AI Visibility Audit:** https://proplum-ai-audit.netlify.app
+- **Missed Call Revenue Calculator:** https://proplum-ai-audit.netlify.app/missed-call-revenue-calculator.html
+- **Job Pricing Calculator:** https://plumbing-calculator-proplum.netlify.app
+- **Franchise Case Study:** https://proplum-franchise-case-study.netlify.app
+- **Emergency Dispatch Demo:** https://astounding-palmier-4b7a56.netlify.app
+
+## Important URLs
+
+- Home: https://proplumnetwork.com
+- Lever AI: https://lever-ai.app
+- Answers AI: https://answers-ai.app
+- Internal Dashboard: https://plumbing-calculator-proplum.netlify.app/internal.html
+- Ecosystem Diagram: https://plumbing-calculator-proplum.netlify.app/ecosystem.html
+
+## Contact
+
+- **Name:** Jeff Mann
+- **Email:** jeff@proplumnetwork.com
+- **Phone:** (813) 491-3590
+- **Calendly:** https://calendly.com/jeff-proplum
+- **Business:** ProPlum Network
+
+## Research & Methodology
+
+- Leaked Google Search API documentation (2TB dataset, 2024)
+- SparkToro / Moz zero-click search research
+- Direct franchise network audits (1-Tom-Plumber, ARS/Rescue Rooter)
+- 200-city contractor database analysis
+- Real emergency call pattern data from AI dispatcher deployments

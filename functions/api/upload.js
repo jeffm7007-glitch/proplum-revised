@@ -80,7 +80,7 @@ export async function onRequestPost(context) {
     });
 
     // Generate public URL via Worker proxy (R2 bucket is private)
-    const publicUrl = `https://proplum-network.pages.dev/api/media/${r2Key}`;
+    const publicUrl = `https://proplum-network.pages.dev/api/media-proxy?key=${encodeURIComponent(r2Key)}`;
 
     // Insert media record into D1
     const mediaId = `med_${Date.now().toString(36)}${Math.random().toString(36).substring(2, 6)}`;

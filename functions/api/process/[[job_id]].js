@@ -13,7 +13,8 @@
 
 export async function onRequestPost(context) {
   const { env, params } = context;
-  const jobId = params.job_id;
+  // params.job_id can be string or array depending on route matching
+  const jobId = Array.isArray(params.job_id) ? params.job_id[0] : params.job_id;
 
   if (!jobId) {
     return jsonResponse({ error: 'Missing job_id' }, 400);

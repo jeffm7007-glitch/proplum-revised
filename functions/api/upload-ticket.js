@@ -11,6 +11,12 @@ const TRADE_SERVICES = [
 
 const STATES = ['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC'];
 
+// R2 S3-compatible credentials
+const R2_ACCOUNT_ID = 'fff5e95cbea3dc79f3003b50f0b8bae1';
+const R2_ACCESS_KEY = '08aa02bc19b7556bd51346fffb53354e';
+const R2_SECRET_KEY = 'b148716b5c2542be77b36cba61871cd9fcd869370283c13e139b0bb8f83dadfb';
+const R2_BUCKET = 'proplum-cache';
+
 export async function onRequestPost(context) {
   const { request, env } = context;
 
@@ -50,15 +56,19 @@ export async function onRequestPost(context) {
       'pending_enrichment'
     ).run();
 
+    // Generate presigned R2 URLs using S3-compatible API
+    const beforeKey = `raw/${jobId}/before.jpg`;
+    const afterKey = `raw/${jobId}/after.jpg`;
+
+    const beforeUrl = await generatePresignedUrl(beforeKey, 'PUT', 15 * 60);
+    const afterUrl = await generatePresignedUrl(afterKey, 'PUT', 15 * 60);
+
     return jsonResponse({
       job_id: jobId,
       status: 'pending_upload',
-      upload_endpoint: '/api/upload',
-      upload_method: 'POST',
-      upload_form_data: {
-        file: '<binary image data>',
-        job_id: jobId,
-        media_role: 'before' // or 'after'
+      upload_urls: {
+        before: { url: beforeUrl, key: beforeKey, method: 'PUT', content_type: 'image/jpeg', max_size_mb: 10 },
+        after:  { url: afterUrl,  key: afterKey,  method: 'PUT', content_type: 'image/jpeg', max_size_mb: 10 }
       },
       expires_at: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
       instructions: {
@@ -113,4 +123,72 @@ async function getOrCreateMarket(db, body) {
   return marketId;
 }
 
+async function generatePresignedUrl(key, method, expiresInSeconds) {
+  const host = `${R2_ACCOUNT_ID}.r2.cloudflarestorage.com`;
+  const date = new Date();
+  const dateStamp = date.toISOString().slice(0, 10).replace(/-/g, '');
+  const amzDate = date.toISOString().slice(0, 19).replace(/[-:]/g, '') + 'Z';
+  
+  const credential = `${R2_ACCESS_KEY}/${dateStamp}/auto/s3/aws4_request`;
+  
+  const params = new URLSearchParams({
+    'X-Amz-Algorithm': 'AWS4-HMAC-SHA256',
+    'X-Amz-Credential': credential,
+    'X-Amz-Date': amzDate,
+    'X-Amz-Expires': String(expiresInSeconds),
+    'X-Amz-SignedHeaders': 'host'
+  });
+  
+  const canonicalRequest = [
+    method,
+    `/${R2_BUCKET}/${encodeURIComponent(key).replace(/%20/g, '+')}`,
+    params.toString(),
+    'host:' + host,
+    '',
+    'host',
+    'UNSIGNED-PAYLOAD'
+  ].join('\n');
+  
+  const stringToSign = [
+    'AWS4-HMAC-SHA256',
+    amzDate,
+    `${dateStamp}/auto/s3/aws4_request`,
+    await sha256(canonicalRequest)
+  ].join('\n');
+  
+  const signingKey = await getSignatureKey(R2_SECRET_KEY, dateStamp, 'auto', 's3');
+  const signature = await hmacHex(signingKey, stringToSign);
+  
+  params.set('X-Amz-Signature', signature);
+  
+  return `https://${host}/${R2_BUCKET}/${key}?${params.toString()}`;
+}
 
+async function sha256(message) {
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+  return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function getSignatureKey(key, dateStamp, regionName, serviceName) {
+  const kDate = await hmac(await encode('AWS4' + key), await encode(dateStamp));
+  const kRegion = await hmac(kDate, await encode(regionName));
+  const kService = await hmac(kRegion, await encode(serviceName));
+  const kSigning = await hmac(kService, await encode('aws4_request'));
+  return kSigning;
+}
+
+async function hmac(key, data) {
+  return crypto.subtle.sign('HMAC', await crypto.subtle.importKey(
+    'raw', key, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']
+  ), data);
+}
+
+async function hmacHex(key, data) {
+  const signature = await hmac(key, await encode(data));
+  return Array.from(new Uint8Array(signature)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function encode(str) {
+  return new TextEncoder().encode(str);
+}

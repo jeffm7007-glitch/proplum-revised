@@ -79,10 +79,8 @@ export async function onRequestPost(context) {
       }
     });
 
-    // Generate public URL
-    // R2 public URLs: https://<accountid>.r2.cloudflarestorage.com/<bucket>/<key>
-    // Or if custom domain configured: https://raw.proplumnetwork.com/<key>
-    const publicUrl = `https://fff5e95cbea3dc79f3003b50f0b8bae1.r2.cloudflarestorage.com/proplum-cache/${r2Key}`;
+    // Generate public URL via Worker proxy (R2 bucket is private)
+    const publicUrl = `https://proplum-network.pages.dev/api/media/${r2Key}`;
 
     // Insert media record into D1
     const mediaId = `med_${Date.now().toString(36)}${Math.random().toString(36).substring(2, 6)}`;

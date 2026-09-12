@@ -1,4 +1,5 @@
 name = "proplum-network"
+pages_build_output_dir = "."
 compatibility_date = "2026-09-12"
 compatibility_flags = ["nodejs_compat"]
 
@@ -7,11 +8,6 @@ compatibility_flags = ["nodejs_compat"]
 binding = "PROPLUM_D1"
 database_name = "proplum-d1"
 database_id = "e91af0ea-9462-47c3-b99d-1e2faffb0e37"
-
-# R2 Bucket Binding (will work once R2 is enabled in dashboard)
-[[r2_buckets]]
-binding = "PROPLUM_R2"
-bucket_name = "proplum-cache"
 
 [vars]
 ENVIRONMENT = "production"

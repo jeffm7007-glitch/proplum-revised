@@ -50,19 +50,15 @@ export async function onRequestPost(context) {
       'pending_enrichment'
     ).run();
 
-    // Generate pre-signed R2 URLs
-    const beforeKey = `raw/${jobId}/before.jpg`;
-    const afterKey = `raw/${jobId}/after.jpg`;
-
-    const beforeUrl = await generatePresignedUrl(env, beforeKey);
-    const afterUrl = await generatePresignedUrl(env, afterKey);
-
     return jsonResponse({
       job_id: jobId,
       status: 'pending_upload',
-      upload_urls: {
-        before: { url: beforeUrl, key: beforeKey, method: 'PUT', content_type: 'image/jpeg', max_size_mb: 10 },
-        after:  { url: afterUrl,  key: afterKey,  method: 'PUT', content_type: 'image/jpeg', max_size_mb: 10 }
+      upload_endpoint: '/api/upload',
+      upload_method: 'POST',
+      upload_form_data: {
+        file: '<binary image data>',
+        job_id: jobId,
+        media_role: 'before' // or 'after'
       },
       expires_at: new Date(Date.now() + 15 * 60 * 1000).toISOString(),
       instructions: {
@@ -117,8 +113,4 @@ async function getOrCreateMarket(db, body) {
   return marketId;
 }
 
-async function generatePresignedUrl(env, key) {
-  // Using R2 binding for direct access; for client uploads we'd need S3-compatible presigned URLs
-  // For now, return the public URL path - the client will upload via a separate endpoint
-  return `https://raw.proplumnetwork.com/${key}`;
-}
+

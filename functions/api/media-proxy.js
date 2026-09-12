@@ -20,17 +20,14 @@ export async function onRequestGet(context) {
     }
 
     const headers = new Headers();
-    object.writeHttpMetadata(headers);
     headers.set('etag', object.httpEtag);
     headers.set('Access-Control-Allow-Origin', '*');
     headers.set('Cache-Control', 'public, max-age=86400');
-    
-    // Ensure content-type is set from R2 metadata
-    if (object.httpMetadata?.contentType) {
-      headers.set('Content-Type', object.httpMetadata.contentType);
-    }
+    headers.set('Content-Type', object.httpMetadata?.contentType || 'application/octet-stream');
 
-    return new Response(object.body, { headers });
+    // Read full object into memory to avoid streaming issues
+    const data = await object.arrayBuffer();
+    return new Response(data, { headers });
 
   } catch (err) {
     console.error('Media proxy error:', err);

@@ -24,6 +24,11 @@ export async function onRequestGet(context) {
     headers.set('etag', object.httpEtag);
     headers.set('Access-Control-Allow-Origin', '*');
     headers.set('Cache-Control', 'public, max-age=86400');
+    
+    // Ensure content-type is set from R2 metadata
+    if (object.httpMetadata?.contentType) {
+      headers.set('Content-Type', object.httpMetadata.contentType);
+    }
 
     return new Response(object.body, { headers });
 

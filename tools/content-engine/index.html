@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnarkyAlma — Content Engine</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #080C15;
+            color: #FFFFFF;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #1D2636;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #FF6B35;
+        }
+        .subtitle {
+            color: #5E6D82;
+            font-size: 0.875rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+        .sidebar {
+            background: #0D1422;
+            border: 1px solid #1D2636;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .sidebar h3 {
+            color: #5E6D82;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        .job-list {
+            list-style: none;
+        }
+        .job-item {
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+        }
+        .job-item:hover {
+            background: #1D2636;
+        }
+        .job-item.active {
+            background: #1D2636;
+            border-color: #FF6B35;
+        }
+        .job-item .job-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+        .job-item .job-meta {
+            font-size: 0.75rem;
+            color: #5E6D82;
+        }
+        .main {
+            background: #0D1422;
+            border: 1px solid #1D2636;
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #1D2636;
+            padding-bottom: 1rem;
+        }
+        .tab {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            color: #8D9BAE;
+            transition: all 0.2s;
+            border: none;
+            background: transparent;
+        }
+        .tab:hover {
+            color: #FFFFFF;
+            background: #1D2636;
+        }
+        .tab.active {
+            background: #FF6B35;
+            color: #FFFFFF;
+        }
+        .perspective-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .perspective-card {
+            background: #080C15;
+            border: 1px solid #1D2636;
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .perspective-card:hover {
+            border-color: #FF6B35;
+        }
+        .perspective-card h4 {
+            color: #FF6B35;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .perspective-card .preview {
+            color: #8D9BAE;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            max-height: 100px;
+            overflow: hidden;
+        }
+        .platform-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        .badge-gbp { background: rgba(66, 133, 244, 0.2); color: #4285F4; }
+        .badge-social { background: rgba(29, 161, 242, 0.2); color: #1DA1F2; }
+        .badge-reddit { background: rgba(255, 69, 0, 0.2); color: #FF4500; }
+        .badge-linkedin { background: rgba(10, 102, 194, 0.2); color: #0A66C2; }
+        .badge-website { background: rgba(34, 197, 94, 0.2); color: #22C55E; }
+        .content-area {
+            background: #080C15;
+            border: 1px solid #1D2636;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            white-space: pre-wrap;
+            font-size: 0.875rem;
+            line-height: 1.6;
+            min-height: 200px;
+            color: #FFFFFF;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+        }
+        .btn-primary {
+            background: #FF6B35;
+            color: #FFFFFF;
+        }
+        .btn-primary:hover {
+            background: #E55A2B;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #1D2636;
+            color: #8D9BAE;
+        }
+        .btn-outline:hover {
+            border-color: #FF6B35;
+            color: #FF6B35;
+        }
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        .copy-toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #22C55E;
+            color: #FFFFFF;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .copy-toast.show {
+            opacity: 1;
+        }
+        .weekly-summary {
+            background: #080C15;
+            border: 2px solid #FF6B35;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        .weekly-summary h3 {
+            color: #FF6B35;
+            margin-bottom: 1rem;
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <div class="logo">SnarkyAlma Content Engine</div>
+                <div class="subtitle">Turn every job into 7 platform-ready posts</div>
+            </div>
+            <div style="color: #5E6D82; font-size: 0.875rem;">
+                Select a job → Generate → Copy → Post
+            </div>
+        </header>
+
+        <div class="grid">
+            <div class="sidebar">
+                <h3>Recent Jobs</h3>
+                <ul class="job-list" id="jobList">
+                    <li class="job-item active" data-job="1">
+                        <div class="job-title">Burst Pipe — 312 Oak St</div>
+                        <div class="job-meta">Sep 12 • Emergency • $450</div>
+                    </li>
+                    <li class="job-item" data-job="2">
+                        <div class="job-title">Water Heater Install</div>
+                        <div class="job-meta">Sep 11 • Standard • $1,200</div>
+                    </li>
+                    <li class="job-item" data-job="3">
+                        <div class="job-title">Sewer Line Backup</div>
+                        <div class="job-meta">Sep 10 • Emergency • $890</div>
+                    </li>
+                    <li class="job-item" data-job="4">
+                        <div class="job-title">Leak Detection</div>
+                        <div class="job-meta">Sep 9 • Standard • $350</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="main">
+                <div class="tabs">
+                    <button class="tab active" data-tab="perspectives">7 Perspectives</button>
+                    <button class="tab" data-tab="platforms">Platform View</button>
+                    <button class="tab" data-tab="weekly">Weekly LinkedIn</button>
+                </div>
+
+                <!-- 7 Perspectives Tab -->
+                <div id="perspectivesTab">
+                    <div class="perspective-grid">
+                        <div class="perspective-card" data-perspective="customer">
+                            <h4>1. Customer Voice</h4>
+                            <div class="preview">"I woke up to water everywhere at 2 AM. Called and they were here in 20 minutes..."</div>
+                            <span class="platform-badge badge-social">Social</span>
+                        </div>
+                        <div class="perspective-card" data-perspective="tech">
+                            <h4>2. Behind the Scenes</h4>
+                            <div class="preview">Found a 3-inch crack in a 40-year-old copper line. Had to reroute through the crawl space...</div>
+                            <span class="platform-badge badge-reddit">Reddit</span>
+                        </div>
+                        <div class="perspective-card" data-perspective="problem">
+                            <h4>3. Problem → Solution</h4>
+                            <div class="preview">Burst pipes don't wait for business hours. Here's what to do in the first 5 minutes...</div>
+                            <span class="platform-badge badge-gbp">GBP</span>
+                        </div>
+                        <div class="perspective-card" data-perspective="beforeafter">
+                            <h4>4. Before / After</h4>
+                            <div class="preview">From flooded basement to dry floors. 3-hour emergency response. Photos speak louder...</div>
+                            <span class="platform-badge badge-social">Social</span>
+                        </div>
+                        <div class="perspective-card" data-perspective="urgency">
+                            <h4>5. Urgency Hook</h4>
+                            <div class="preview">2 AM. Water gushing. 20-minute response. When every minute counts, you need someone who...</div>
+                            <span class="platform-badge badge-gbp">GBP</span>
+                        </div>
+                        <div class="perspective-card" data-perspective="local">
+                            <h4>6. Community Local</h4>
+                            <div class="preview">Another Oak Street save. Love this neighborhood — been servicing these homes for 15 years...</div>
+                            <span class="platform-badge badge-social">Social</span>
+                        </div>
+                        <div class="perspective-card" data-perspective="brand">
+                            <h4>7. Brand Values</h4>
+                            <div class="preview">We don't just fix pipes. We show up when nobody else will. Every emergency call is a family...</div>
+                            <span class="platform-badge badge-linkedin">LinkedIn</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Platform View Tab -->
+                <div id="platformsTab" class="hidden">
+                    <div class="perspective-grid">
+                        <div class="perspective-card" data-platform="gbp">
+                            <h4>Google Business Profile</h4>
+                            <div class="preview">Short, local, keyword-rich. No links. Focus on service area + response time...</div>
+                            <span class="platform-badge badge-gbp">GBP</span>
+                        </div>
+                        <div class="perspective-card" data-platform="reddit">
+                            <h4>Reddit</h4>
+                            <div class="preview">Authentic, helpful, no sales pitch. "Had this exact issue last week. Here's what actually worked..."</div>
+                            <span class="platform-badge badge-reddit">Reddit</span>
+                        </div>
+                        <div class="perspective-card" data-platform="social">
+                            <h4>Social Media</h4>
+                            <div class="preview">Visual-first, emoji-light, story-driven. Focus on the human moment...</div>
+                            <span class="platform-badge badge-social">Social</span>
+                        </div>
+                        <div class="perspective-card" data-platform="website">
+                            <h4>Client Website</h4>
+                            <div class="preview">Case study format. Problem, diagnosis, solution, result. SEO-optimized with schema...</div>
+                            <span class="platform-badge badge-website">Website</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weekly LinkedIn Tab -->
+                <div id="weeklyTab" class="hidden">
+                    <div class="weekly-summary">
+                        <h3>Weekly LinkedIn Roundup</h3>
+                        <p style="color: #8D9BAE; margin-bottom: 1rem;">Consolidates all jobs from the week into one professional post.</p>
+                        <div class="content-area" id="weeklyContent">
+This week at [Company Name]:
+
+🔧 47 calls handled
+⚡ 12 emergency responses (avg. 18 min)
+💧 3 burst pipes saved before major damage
+🔥 5 water heaters installed
+⭐ 4.9/5 average customer rating
+
+The numbers don't lie. When plumbing fails, speed matters. Every minute of response time is a minute less of water damage, stress, and cost.
+
+Shoutout to the team for another flawless week.
+
+#Plumbing #EmergencyServices #HomeServices #LocalBusiness
+                        </div>
+                        <div class="actions">
+                            <button class="btn btn-primary" onclick="copyContent('weeklyContent')">Copy for LinkedIn</button>
+                            <button class="btn btn-outline" onclick="regenerateWeekly()">Regenerate</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Editor -->
+                <div id="contentEditor" class="hidden">
+                    <h3 id="editorTitle">Edit Post</h3>
+                    <div class="content-area" id="editorContent" contenteditable="true"></div>
+                    <div class="actions">
+                        <button class="btn btn-primary" onclick="copyEditorContent()">Copy to Clipboard</button>
+                        <button class="btn btn-outline" onclick="closeEditor()">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="copy-toast" id="copyToast">Copied!</div>
+
+    <script>
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                document.getElementById('perspectivesTab').classList.add('hidden');
+                document.getElementById('platformsTab').classList.add('hidden');
+                document.getElementById('weeklyTab').classList.add('hidden');
+                document.getElementById('contentEditor').classList.add('hidden');
+                
+                const tabName = tab.dataset.tab;
+                if (tabName === 'perspectives') document.getElementById('perspectivesTab').classList.remove('hidden');
+                if (tabName === 'platforms') document.getElementById('platformsTab').classList.remove('hidden');
+                if (tabName === 'weekly') document.getElementById('weeklyTab').classList.remove('hidden');
+            });
+        });
+
+        // Job selection
+        document.querySelectorAll('.job-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.job-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                // In production, this would fetch job data and regenerate perspectives
+            });
+        });
+
+        // Perspective cards
+        document.querySelectorAll('.perspective-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const perspective = card.dataset.perspective;
+                const platform = card.dataset.platform;
+                openEditor(perspective || platform, card.querySelector('.preview').textContent);
+            });
+        });
+
+        function openEditor(type, content) {
+            document.getElementById('perspectivesTab').classList.add('hidden');
+            document.getElementById('platformsTab').classList.add('hidden');
+            document.getElementById('weeklyTab').classList.add('hidden');
+            document.getElementById('contentEditor').classList.remove('hidden');
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            
+            const titles = {
+                customer: 'Customer Voice Post',
+                tech: 'Behind the Scenes',
+                problem: 'Problem → Solution',
+                beforeafter: 'Before / After',
+                urgency: 'Urgency Hook',
+                local: 'Community Local',
+                brand: 'Brand Values',
+                gbp: 'Google Business Profile Post',
+                reddit: 'Reddit Post',
+                social: 'Social Media Post',
+                website: 'Website Case Study'
+            };
+            
+            document.getElementById('editorTitle').textContent = titles[type] || 'Edit Post';
+            document.getElementById('editorContent').textContent = generateFullPost(type, content);
+        }
+
+        function generateFullPost(type, seed) {
+            const posts = {
+                customer: `\u201cI woke up to water everywhere at 2 AM. Called [Company] and they were here in 20 minutes.\n\nThe technician walked me through exactly what was wrong, showed me the cracked pipe, and had it fixed before my coffee got cold.\n\n$450. No hidden fees. No upsell. Just fixed it.\n\nIf you're in [City], save their number. Trust me.\u201d\n\n\u2014 Jeff, Oak Street`,
+                tech: `Found a 3-inch crack in a 40-year-old copper line today. House was built in '82 and this was original piping.\n\nHad to reroute through the crawl space because the original run was behind a finished basement wall. Customer thought they'd have to tear the wall down.\n\nNope. New PEX run, bypassed the bad section, pressure test passed. 3 hours total.\n\nPro tip: If your house is 40+ years old and you've never had a plumbing inspection, you're living on borrowed time. Copper doesn't last forever.`,
+                problem: `\u26a0\ufe0f BURST PIPE? Do THIS in the first 5 minutes:\n\n1. Shut off main water (usually near street or in basement)\n2. Open lowest faucet to drain remaining water\n3. Turn off water heater to prevent damage\n4. Call emergency plumber (don't wait for morning)\n5. Document everything for insurance\n\nEvery minute counts. Water travels fast behind walls.\n\nWe respond 24/7 in [Service Area]. Save this post.`,
+                beforeafter: `From flooded basement to dry floors.\n\nBEFORE: 2 inches of standing water, soaked drywall, homeowner in panic mode\n\nAFTER: Dry floors, repaired pipe, dehumidifiers running, insurance photos documented\n\nTime: 3 hours\nResponse: 18 minutes\nResult: No mold, no structural damage, insurance covered everything\n\nThat's the difference between a fast response and waiting until morning.\n\n[Photo 1: Flooded] [Photo 2: Dry + repaired]`,
+                urgency: `2 AM. Water gushing. 20-minute response.\n\nWhen every minute counts, you need someone who answers the phone at 2 AM and shows up with the right parts.\n\nNot tomorrow. Not \"we'll call you back.\" Now.\n\nEmergency plumbing doesn't wait for business hours. Neither do we.\n\n[City] • 24/7 • [Phone]`,
+                local: `Another Oak Street save today.\n\nLove this neighborhood \u2014 been servicing these homes for 15 years. Know the pipe layouts, know the common issues, know the people.\n\nMrs. Johnson (retired teacher, 3rd house on the left) had a water heater go out. We had her back in hot water by dinner.\n\nThat's the thing about local service. We're not just fixing pipes. We're keeping this neighborhood running.\n\n[City] born and raised.`,
+                brand: `We don't just fix pipes. We show up when nobody else will.\n\nEvery emergency call is a family in crisis. A business about to flood. A homeowner watching their biggest investment get destroyed by water.\n\nOur average response time: 18 minutes.\nOur availability: 24/7/365.\nOur promise: No upsell. No hidden fees. Just fix it.\n\nBecause at 2 AM, you don't need a sales pitch. You need someone who cares.\n\nThat's not a tagline. That's who we are.`,
+                gbp: `Emergency pipe repair \u2014 Oak St, [City]\n\n\u26a0\ufe0f Burst pipe at 2 AM\n\u2705 Arrived in 18 minutes\n\u2705 Repaired and water restored in 3 hours\n\u2705 No mold, no structural damage\n\n24/7 emergency plumbing in [Service Area].\n\nCall [Phone] anytime.`,
+                reddit: `Had a burst pipe situation last week and wanted to share what I learned (not a plumber, just a homeowner who got educated fast).\n\nThe plumber who came out showed me exactly what happened \u2014 40-year-old copper pipe finally gave out. He could've just fixed it and left, but he walked me through why it failed, what to watch for, and how to prevent it happening elsewhere.\n\nKey things I learned:\n- Copper lifespan is 50-70 years but can fail earlier with hard water\n- If you see green corrosion on fittings, get it checked\n- Water pressure above 80 PSI shortens pipe life\n- An inspection now is cheaper than emergency repair later\n\nIf you're in [City], DM me and I'll share his info. Solid guy, no BS.`,
+                social: `2 AM. Flooded basement. Family of four standing in ankle-deep water.\n\n18 minutes later: We're there.\n3 hours later: Dry floors, fixed pipe, running water.\n\nNo sleep lost. No mold growing. No insurance battle.\n\nJust fixed it.\n\nThat's the job. That's why we do it.\n\n[Photo: Technician + family thumbs up]`,
+                website: `## Emergency Pipe Repair \u2014 Oak Street, [City]\n\n### The Problem\nHomeowner woke at 2 AM to find their basement flooded due to a burst copper pipe. Water had been running for an estimated 2 hours before discovery.\n\n### Our Response\n- Call received: 2:17 AM\n- Technician dispatched: 2:18 AM\n- On-site arrival: 2:35 AM (18-minute response)\n- Emergency shutoff completed: 2:38 AM\n\n### The Diagnosis\n40-year-old copper supply line (3-inch crack) failed due to age and hard water corrosion. Original pipe run was behind a finished basement wall.\n\n### The Solution\nRather than demolish the finished wall, our technician rerouted a new PEX line through the crawl space, bypassing the failed section entirely. This saved the customer approximately $3,000 in drywall repair and finishing costs.\n\n### Results\n- Water restored: 5:30 AM\n- Total repair time: 3 hours\n- Damage prevented: Mold growth, structural damage, electrical hazard\n- Customer satisfaction: 5/5\n- Cost: $450 (no hidden fees)\n\n### What the Customer Said\n> \"I expected to lose the basement. They had it fixed before breakfast. I don't know how to thank them.\"\n\n---\n\n*Emergency plumbing services available 24/7 in [Service Area]. Average response time: 18 minutes.*`
+            };
+            
+            return posts[type] || seed;
+        }
+
+        function closeEditor() {
+            document.getElementById('contentEditor').classList.add('hidden');
+            document.getElementById('perspectivesTab').classList.remove('hidden');
+            document.querySelector('.tab[data-tab="perspectives"]').classList.add('active');
+        }
+
+        function copyContent(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast();
+            });
+        }
+
+        function copyEditorContent() {
+            const text = document.getElementById('editorContent').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast();
+            });
+        }
+
+        function showToast() {
+            const toast = document.getElementById('copyToast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        function regenerateWeekly() {
+            // In production, this would fetch real weekly data
+            const content = document.getElementById('weeklyContent');
+            content.textContent = content.textContent.replace(/\d+/, Math.floor(Math.random() * 50 + 20));
+        }
+    </script>
+</body>
+</html>

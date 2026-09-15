@@ -93,7 +93,7 @@ ProPlum Network is the parent infrastructure company for AI-powered emergency di
 - **Missed Call Revenue Calculator:** https://proplum-ai-audit.netlify.app/missed-call-revenue-calculator.html
 - **Job Pricing Calculator:** https://plumbing-calculator-proplum.netlify.app
 - **Franchise Case Study:** https://proplum-franchise-case-study.netlify.app
-- **Emergency Dispatch Demo:** https://astounding-palmier-4b7a56.netlify.app
+- **Emergency Dispatch Demo:** https://645839fb.lever-demo.pages.dev
 
 ## Important URLs
 
